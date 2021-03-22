@@ -8,6 +8,7 @@
 import Foundation
 
 class TableViewCellViewModel: TableViewCellViewModelType {
+    
     private var city: City?
     
     var name: String {

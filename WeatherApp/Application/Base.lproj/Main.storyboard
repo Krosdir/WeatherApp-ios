@@ -8,38 +8,38 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--CIties-->
+        <!--Cities-->
         <scene sceneID="hry-5p-Ril">
             <objects>
                 <tableViewController modalPresentationStyle="overFullScreen" id="ufv-zj-Yo7" customClass="TableViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="KXS-z9-VAm">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="45" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="KXS-z9-VAm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CityTableViewCell" id="UgT-Lv-GbC" customClass="CityTableViewCell" customModule="WeatherApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="45"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UgT-Lv-GbC" id="hfW-h7-H4L">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pEm-QM-17g">
-                                            <rect key="frame" x="337" y="11" width="22" height="22"/>
+                                            <rect key="frame" x="337" y="11.5" width="22" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="40" id="DxE-nf-Yh4"/>
                                                 <constraint firstAttribute="width" secondItem="pEm-QM-17g" secondAttribute="height" multiplier="1:1" id="rDp-ho-IOW"/>
                                             </constraints>
                                             <state key="normal" image="pencil" catalog="system"/>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B75-B9-QXF">
-                                            <rect key="frame" x="16" y="5" width="321" height="34"/>
+                                        <button userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B75-B9-QXF">
+                                            <rect key="frame" x="16" y="5.5" width="321" height="34"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <state key="normal" title="Button">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <connections>
-                                                <segue destination="bFX-y3-8Tl" kind="show" id="l17-GI-I0O"/>
+                                                <action selector="cityButtonAction:" destination="UgT-Lv-GbC" eventType="touchUpInside" id="2I6-PK-yVD"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -56,14 +56,14 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddCityTableViewCell" id="Jk3-lf-0tH" customClass="AddCityTableViewCell" customModule="WeatherApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="71.5" width="375" height="43.5"/>
+                                <rect key="frame" x="0.0" y="73" width="375" height="45"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jk3-lf-0tH" id="JYU-3v-g9Q">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7gh-6Y-fYM">
-                                            <rect key="frame" x="16" y="11" width="343" height="22"/>
+                                            <rect key="frame" x="16" y="11.5" width="343" height="22"/>
                                             <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             <state key="normal" title="Add city" image="plus.circle" catalog="system">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -83,16 +83,16 @@
                             <outlet property="delegate" destination="ufv-zj-Yo7" id="1Oq-h7-GM3"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="CIties" id="Hj8-HX-jUJ"/>
+                    <navigationItem key="navigationItem" title="Cities" id="Hj8-HX-jUJ"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cF1-NU-jve" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3141.5999999999999" y="-180.35982008995504"/>
         </scene>
-        <!--City-->
+        <!--Detail View Controller-->
         <scene sceneID="w8S-62-bQz">
             <objects>
-                <viewController id="bFX-y3-8Tl" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" id="bFX-y3-8Tl" customClass="DetailViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WHZ-ae-eGD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -134,9 +134,15 @@
                             <constraint firstItem="sVp-v7-fq4" firstAttribute="centerX" secondItem="WHZ-ae-eGD" secondAttribute="centerX" id="uiz-Wo-BL0"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="City" id="GOg-Wi-R1I">
-                        <barButtonItem key="rightBarButtonItem" image="pencil" catalog="system" id="knw-s1-r7d"/>
+                    <navigationItem key="navigationItem" id="rea-pI-ufz">
+                        <barButtonItem key="rightBarButtonItem" image="pencil" catalog="system" id="gxo-9I-Ip7"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="VX5-VP-DrF" id="ulh-eL-bWf"/>
+                        <outlet property="humidityLabel" destination="iTk-Hq-McP" id="4Vu-0W-BK3"/>
+                        <outlet property="pressureLabel" destination="4Qb-cG-A4h" id="VP0-PJ-eP9"/>
+                        <outlet property="temperatureLabel" destination="dAw-c6-q8F" id="zde-K3-5jN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5CR-FB-U28" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -17,6 +17,9 @@
 		7DE751E1260874350099A0E1 /* AddCityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE751E0260874350099A0E1 /* AddCityTableViewCell.swift */; };
 		7DE751E4260876E50099A0E1 /* TableViewCellViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE751E3260876E50099A0E1 /* TableViewCellViewModelType.swift */; };
 		7DE751E8260878460099A0E1 /* TableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE751E7260878460099A0E1 /* TableViewCellViewModel.swift */; };
+		7DE751EE26087BC20099A0E1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE751ED26087BC20099A0E1 /* DetailViewController.swift */; };
+		7DE751F126087CC70099A0E1 /* DetailViewViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE751F026087CC70099A0E1 /* DetailViewViewModelType.swift */; };
+		7DE751F426087D550099A0E1 /* DetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE751F326087D550099A0E1 /* DetailViewViewModel.swift */; };
 		870E30E226084FC900F82987 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870E30E126084FC900F82987 /* AppDelegate.swift */; };
 		870E30E426084FC900F82987 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870E30E326084FC900F82987 /* SceneDelegate.swift */; };
 		870E30E926084FC900F82987 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 870E30E726084FC900F82987 /* Main.storyboard */; };
@@ -35,6 +38,9 @@
 		7DE751E0260874350099A0E1 /* AddCityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCityTableViewCell.swift; sourceTree = "<group>"; };
 		7DE751E3260876E50099A0E1 /* TableViewCellViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellViewModelType.swift; sourceTree = "<group>"; };
 		7DE751E7260878460099A0E1 /* TableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellViewModel.swift; sourceTree = "<group>"; };
+		7DE751ED26087BC20099A0E1 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		7DE751F026087CC70099A0E1 /* DetailViewViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewViewModelType.swift; sourceTree = "<group>"; };
+		7DE751F326087D550099A0E1 /* DetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewViewModel.swift; sourceTree = "<group>"; };
 		870E30DE26084FC900F82987 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		870E30E126084FC900F82987 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		870E30E326084FC900F82987 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +67,7 @@
 				7DE751C726086E020099A0E1 /* Storyboarded.swift */,
 				7DE751D7260870A00099A0E1 /* TableViewViewModelType.swift */,
 				7DE751E3260876E50099A0E1 /* TableViewCellViewModelType.swift */,
+				7DE751F026087CC70099A0E1 /* DetailViewViewModelType.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -101,6 +108,31 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		7DE751EC26087B9C0099A0E1 /* DetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7DE751F7260886700099A0E1 /* View */,
+				7DE751F9260886760099A0E1 /* ViewModel */,
+			);
+			path = DetailViewController;
+			sourceTree = "<group>";
+		};
+		7DE751F7260886700099A0E1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7DE751ED26087BC20099A0E1 /* DetailViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7DE751F9260886760099A0E1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7DE751F326087D550099A0E1 /* DetailViewViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		870E30D526084FC900F82987 = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +152,7 @@
 		870E30E026084FC900F82987 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				7DE751EC26087B9C0099A0E1 /* DetailViewController */,
 				7DE751CA26086E830099A0E1 /* TableViewController */,
 				7DE751C526086DAE0099A0E1 /* Protocols */,
 				870E30F82608535D00F82987 /* Application */,
@@ -220,6 +253,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DE751EE26087BC20099A0E1 /* DetailViewController.swift in Sources */,
+				7DE751F426087D550099A0E1 /* DetailViewViewModel.swift in Sources */,
 				7DE751DE260872640099A0E1 /* CityTableViewCell.swift in Sources */,
 				870E30E226084FC900F82987 /* AppDelegate.swift in Sources */,
 				7DE751E4260876E50099A0E1 /* TableViewCellViewModelType.swift in Sources */,
@@ -231,6 +266,7 @@
 				7DE751C826086E020099A0E1 /* Storyboarded.swift in Sources */,
 				7DE751D8260870A00099A0E1 /* TableViewViewModelType.swift in Sources */,
 				7DE751E1260874350099A0E1 /* AddCityTableViewCell.swift in Sources */,
+				7DE751F126087CC70099A0E1 /* DetailViewViewModelType.swift in Sources */,
 				7DE751D426086F780099A0E1 /* City.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
