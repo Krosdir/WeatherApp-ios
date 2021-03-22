@@ -27,8 +27,14 @@ class TableViewController: UITableViewController {
         if indexPath.row < viewModel.numberOfRows {
             let cell = tableView.dequeueReusableCell(withIdentifier: CityTableViewCell.identifier,
                                                      for: indexPath) as! CityTableViewCell
-            guard let cellViewModel = viewModel.cellViewModel(for: indexPath) else { return UITableViewCell() }
-            cell.setName(cellViewModel.name)
+            guard let cellViewModel = viewModel.cellViewModel(for: indexPath),
+                  let locationViewModel = viewModel.selectLocationViewModel(for: indexPath) else {
+                return UITableViewCell()
+            }
+            cell.viewModel = cellViewModel
+            cell.editButtonTapped = { [weak self] in
+                self?.openSelectLocationController(with: locationViewModel)
+            }
             
             return cell
         } else {
@@ -39,13 +45,30 @@ class TableViewController: UITableViewController {
         }
     }
     
+    // MARK: - Table view delegate
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard indexPath.row < viewModel.numberOfRows,
-              let detailViewModel = viewModel.detailViewModel(for: indexPath) else { return }
+        if indexPath.row < viewModel.numberOfRows {
+            guard let detailViewModel = viewModel.detailViewModel(for: indexPath) else { return }
+            
+            let detailViewController = DetailViewController.instantiate()
+            detailViewController.viewModel = detailViewModel
+            
+            self.navigationController?.pushViewController(detailViewController, animated: true)
+        } else {
+            guard let selectLocationViewModel = viewModel.selectLocationViewModel(for: indexPath) else { return }
+            
+            openSelectLocationController(with: selectLocationViewModel)
+        }
         
-        let detailViewController = DetailViewController.instantiate()
-        detailViewController.viewModel = detailViewModel
+    }
+}
+
+private extension TableViewController {
+    func openSelectLocationController(with viewModel: SelectLocationViewViewModelType?) {
+        let selectLocationViewController = SelectLocationViewController.instantiate()
+        selectLocationViewController.viewModel = viewModel
         
-        self.navigationController?.pushViewController(detailViewController, animated: true)
+        self.navigationController?.pushViewController(selectLocationViewController, animated: true)
     }
 }

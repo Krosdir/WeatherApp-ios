@@ -11,19 +11,19 @@ class CityTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var nameLabel: UIButton!
     
-    var detailViewModel: DetailViewViewModelType!
+    var editButtonTapped: (() -> Void)?
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
-    func setName(_ name: String) {
-        nameLabel.setTitle(name, for: .normal)
+    var viewModel: TableViewCellViewModelType? {
+        willSet(viewModel) {
+            guard let viewModel = viewModel else { return }
+            nameLabel.setTitle(viewModel.name, for: .normal)
+        }
     }
     
     // MARK: - Action
-    @IBAction func cityButtonAction(_ sender: Any) {
-    }
     
+    @IBAction func editButtonAction(_ sender: Any) {
+        self.editButtonTapped?()
+    }
     
 }

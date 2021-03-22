@@ -31,6 +31,9 @@
                                                 <constraint firstAttribute="width" secondItem="pEm-QM-17g" secondAttribute="height" multiplier="1:1" id="rDp-ho-IOW"/>
                                             </constraints>
                                             <state key="normal" image="pencil" catalog="system"/>
+                                            <connections>
+                                                <action selector="editButtonAction:" destination="UgT-Lv-GbC" eventType="touchUpInside" id="Zyn-kH-N9r"/>
+                                            </connections>
                                         </button>
                                         <button userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B75-B9-QXF">
                                             <rect key="frame" x="16" y="5.5" width="321" height="34"/>
@@ -38,9 +41,6 @@
                                             <state key="normal" title="Button">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
-                                            <connections>
-                                                <action selector="cityButtonAction:" destination="UgT-Lv-GbC" eventType="touchUpInside" id="2I6-PK-yVD"/>
-                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -62,7 +62,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7gh-6Y-fYM">
+                                        <button userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7gh-6Y-fYM">
                                             <rect key="frame" x="16" y="11.5" width="343" height="22"/>
                                             <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             <state key="normal" title="Add city" image="plus.circle" catalog="system">
@@ -135,7 +135,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rea-pI-ufz">
-                        <barButtonItem key="rightBarButtonItem" image="pencil" catalog="system" id="gxo-9I-Ip7"/>
+                        <barButtonItem key="rightBarButtonItem" image="pencil" catalog="system" id="gxo-9I-Ip7">
+                            <connections>
+                                <action selector="editButtonAction:" destination="bFX-y3-8Tl" id="KS0-db-0qr"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="descriptionLabel" destination="VX5-VP-DrF" id="ulh-eL-bWf"/>
@@ -176,17 +180,17 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="50Y-k7-xfy">
-                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="wqy-vD-7iA"/>
+                        <barButtonItem key="rightBarButtonItem" image="plus.circle" catalog="system" id="wqy-vD-7iA"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lkU-iC-lUV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3142" y="507"/>
         </scene>
-        <!--View Controller-->
+        <!--Select Location View Controller-->
         <scene sceneID="VW4-iu-N3c">
             <objects>
-                <viewController id="alx-n3-pj9" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectLocationViewController" id="alx-n3-pj9" customClass="SelectLocationViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t03-9q-gN7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -205,15 +209,22 @@
                             <constraint firstItem="mAB-1s-QKn" firstAttribute="centerX" secondItem="t03-9q-gN7" secondAttribute="centerX" id="d72-lo-ji1"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="wEY-i1-grP">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="pv2-DB-ADE">
+                            <connections>
+                                <action selector="nextButtonAction:" destination="alx-n3-pj9" id="Mye-j8-HGN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FXH-O0-Bsd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4846" y="230"/>
         </scene>
-        <!--View Controller-->
+        <!--Edit Title View Controller-->
         <scene sceneID="hW6-8N-bFa">
             <objects>
-                <viewController id="VU1-tu-tev" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditTitleViewController" id="VU1-tu-tev" customClass="EditTitleViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5ve-YT-gWn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -240,6 +251,16 @@
                             <constraint firstItem="uNd-Bf-P1v" firstAttribute="centerX" secondItem="5ve-YT-gWn" secondAttribute="centerX" id="npB-dV-QWx"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="9sz-Sj-LwE">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="Uk4-is-ipI">
+                            <connections>
+                                <action selector="doneButtonAction:" destination="VU1-tu-tev" id="U40-qd-KNI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="nameTextField" destination="uNd-Bf-P1v" id="kfH-i4-Aql"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gBr-ZD-ywr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -284,7 +305,6 @@
     </scenes>
     <resources>
         <image name="pencil" catalog="system" width="128" height="113"/>
-        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.circle" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -34,4 +34,8 @@ class DetailViewViewModel: DetailViewViewModelType {
     init(city: City) {
         self.city = city
     }
+    
+    func selectLocationViewModel() -> SelectLocationViewViewModelType? {
+        return SelectLocationViewViewModel(city: city)
+    }
 }

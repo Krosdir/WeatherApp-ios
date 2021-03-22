@@ -26,6 +26,13 @@ class DetailViewController: UIViewController, Storyboarded {
         setupViews()
     }
     
+    @IBAction func editButtonAction(_ sender: Any) {
+        let selectLocationViewController = SelectLocationViewController.instantiate()
+        selectLocationViewController.viewModel = viewModel.selectLocationViewModel()
+        
+        self.navigationController?.pushViewController(selectLocationViewController, animated: true)
+    }
+    
 }
 
 // MARK: - Private

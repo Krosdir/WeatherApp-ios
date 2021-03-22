@@ -20,6 +20,13 @@
 		7DE751EE26087BC20099A0E1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE751ED26087BC20099A0E1 /* DetailViewController.swift */; };
 		7DE751F126087CC70099A0E1 /* DetailViewViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE751F026087CC70099A0E1 /* DetailViewViewModelType.swift */; };
 		7DE751F426087D550099A0E1 /* DetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE751F326087D550099A0E1 /* DetailViewViewModel.swift */; };
+		7DE751FC260898870099A0E1 /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE751FB260898870099A0E1 /* Coordinates.swift */; };
+		7DE751FF26089AAC0099A0E1 /* SelectLocationViewViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE751FE26089AAC0099A0E1 /* SelectLocationViewViewModelType.swift */; };
+		7DE7520326089B480099A0E1 /* SelectLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE7520226089B480099A0E1 /* SelectLocationViewController.swift */; };
+		7DE7520626089B700099A0E1 /* SelectLocationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE7520526089B700099A0E1 /* SelectLocationViewViewModel.swift */; };
+		7DE752102608B5060099A0E1 /* EditTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE7520F2608B5060099A0E1 /* EditTitleViewController.swift */; };
+		7DE752132608B5270099A0E1 /* EditTitleViewViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE752122608B5270099A0E1 /* EditTitleViewViewModelType.swift */; };
+		7DE752192608B90F0099A0E1 /* EditTitleViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE752152608B6630099A0E1 /* EditTitleViewViewModel.swift */; };
 		870E30E226084FC900F82987 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870E30E126084FC900F82987 /* AppDelegate.swift */; };
 		870E30E426084FC900F82987 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870E30E326084FC900F82987 /* SceneDelegate.swift */; };
 		870E30E926084FC900F82987 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 870E30E726084FC900F82987 /* Main.storyboard */; };
@@ -41,6 +48,13 @@
 		7DE751ED26087BC20099A0E1 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		7DE751F026087CC70099A0E1 /* DetailViewViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewViewModelType.swift; sourceTree = "<group>"; };
 		7DE751F326087D550099A0E1 /* DetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewViewModel.swift; sourceTree = "<group>"; };
+		7DE751FB260898870099A0E1 /* Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinates.swift; sourceTree = "<group>"; };
+		7DE751FE26089AAC0099A0E1 /* SelectLocationViewViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationViewViewModelType.swift; sourceTree = "<group>"; };
+		7DE7520226089B480099A0E1 /* SelectLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationViewController.swift; sourceTree = "<group>"; };
+		7DE7520526089B700099A0E1 /* SelectLocationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationViewViewModel.swift; sourceTree = "<group>"; };
+		7DE7520F2608B5060099A0E1 /* EditTitleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTitleViewController.swift; sourceTree = "<group>"; };
+		7DE752122608B5270099A0E1 /* EditTitleViewViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTitleViewViewModelType.swift; sourceTree = "<group>"; };
+		7DE752152608B6630099A0E1 /* EditTitleViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTitleViewViewModel.swift; sourceTree = "<group>"; };
 		870E30DE26084FC900F82987 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		870E30E126084FC900F82987 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		870E30E326084FC900F82987 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +82,8 @@
 				7DE751D7260870A00099A0E1 /* TableViewViewModelType.swift */,
 				7DE751E3260876E50099A0E1 /* TableViewCellViewModelType.swift */,
 				7DE751F026087CC70099A0E1 /* DetailViewViewModelType.swift */,
+				7DE751FE26089AAC0099A0E1 /* SelectLocationViewViewModelType.swift */,
+				7DE752122608B5270099A0E1 /* EditTitleViewViewModelType.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -104,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				7DE751D326086F780099A0E1 /* City.swift */,
+				7DE751FB260898870099A0E1 /* Coordinates.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -133,6 +150,56 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		7DE7520126089B180099A0E1 /* SelectLocationViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7DE752082608B4CC0099A0E1 /* View */,
+				7DE752092608B4D10099A0E1 /* VIewModel */,
+			);
+			path = SelectLocationViewController;
+			sourceTree = "<group>";
+		};
+		7DE752082608B4CC0099A0E1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7DE7520226089B480099A0E1 /* SelectLocationViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7DE752092608B4D10099A0E1 /* VIewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7DE7520526089B700099A0E1 /* SelectLocationViewViewModel.swift */,
+			);
+			path = VIewModel;
+			sourceTree = "<group>";
+		};
+		7DE7520C2608B4D90099A0E1 /* EditTitleViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7DE7520D2608B4EB0099A0E1 /* View */,
+				7DE7520E2608B4EF0099A0E1 /* ViewModel */,
+			);
+			path = EditTitleViewController;
+			sourceTree = "<group>";
+		};
+		7DE7520D2608B4EB0099A0E1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7DE7520F2608B5060099A0E1 /* EditTitleViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7DE7520E2608B4EF0099A0E1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7DE752152608B6630099A0E1 /* EditTitleViewViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		870E30D526084FC900F82987 = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +219,8 @@
 		870E30E026084FC900F82987 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				7DE7520C2608B4D90099A0E1 /* EditTitleViewController */,
+				7DE7520126089B180099A0E1 /* SelectLocationViewController */,
 				7DE751EC26087B9C0099A0E1 /* DetailViewController */,
 				7DE751CA26086E830099A0E1 /* TableViewController */,
 				7DE751C526086DAE0099A0E1 /* Protocols */,
@@ -256,10 +325,17 @@
 				7DE751EE26087BC20099A0E1 /* DetailViewController.swift in Sources */,
 				7DE751F426087D550099A0E1 /* DetailViewViewModel.swift in Sources */,
 				7DE751DE260872640099A0E1 /* CityTableViewCell.swift in Sources */,
+				7DE752102608B5060099A0E1 /* EditTitleViewController.swift in Sources */,
 				870E30E226084FC900F82987 /* AppDelegate.swift in Sources */,
 				7DE751E4260876E50099A0E1 /* TableViewCellViewModelType.swift in Sources */,
+				7DE7520326089B480099A0E1 /* SelectLocationViewController.swift in Sources */,
 				870E30E426084FC900F82987 /* SceneDelegate.swift in Sources */,
+				7DE751FF26089AAC0099A0E1 /* SelectLocationViewViewModelType.swift in Sources */,
 				7DE751CD26086EC00099A0E1 /* TableViewController.swift in Sources */,
+				7DE752192608B90F0099A0E1 /* EditTitleViewViewModel.swift in Sources */,
+				7DE752132608B5270099A0E1 /* EditTitleViewViewModelType.swift in Sources */,
+				7DE7520626089B700099A0E1 /* SelectLocationViewViewModel.swift in Sources */,
+				7DE751FC260898870099A0E1 /* Coordinates.swift in Sources */,
 				7DE751DB260872030099A0E1 /* Extensions.swift in Sources */,
 				7DE751E8260878460099A0E1 /* TableViewCellViewModel.swift in Sources */,
 				7DE751D026086F210099A0E1 /* TableViewViewModel.swift in Sources */,
