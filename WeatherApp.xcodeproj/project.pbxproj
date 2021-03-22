@@ -56,15 +56,31 @@
 		870E30E026084FC900F82987 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				870E30E126084FC900F82987 /* AppDelegate.swift */,
-				870E30E326084FC900F82987 /* SceneDelegate.swift */,
 				870E30E526084FC900F82987 /* ViewController.swift */,
-				870E30E726084FC900F82987 /* Main.storyboard */,
-				870E30EA26084FE700F82987 /* Assets.xcassets */,
-				870E30EC26084FE700F82987 /* LaunchScreen.storyboard */,
-				870E30EF26084FE700F82987 /* Info.plist */,
+				870E30F82608535D00F82987 /* Application */,
+				870E30F72608530700F82987 /* Supporting Files */,
 			);
 			path = WeatherApp;
+			sourceTree = "<group>";
+		};
+		870E30F72608530700F82987 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				870E30EA26084FE700F82987 /* Assets.xcassets */,
+				870E30EF26084FE700F82987 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		870E30F82608535D00F82987 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				870E30E126084FC900F82987 /* AppDelegate.swift */,
+				870E30E326084FC900F82987 /* SceneDelegate.swift */,
+				870E30E726084FC900F82987 /* Main.storyboard */,
+				870E30EC26084FE700F82987 /* LaunchScreen.storyboard */,
+			);
+			path = Application;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,14 +302,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = WeatherApp/Info.plist;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "WeatherApp/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Krosdir.WeatherApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -304,14 +323,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = WeatherApp/Info.plist;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "WeatherApp/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Krosdir.WeatherApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
