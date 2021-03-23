@@ -15,6 +15,8 @@ class TableViewController: UITableViewController {
         super.viewDidLoad()
         
         viewModel = TableViewViewModel()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTable), name: .reloadTable, object: nil)
     }
 
     // MARK: - Table view data source
@@ -70,5 +72,12 @@ private extension TableViewController {
         selectLocationViewController.viewModel = viewModel
         
         self.navigationController?.pushViewController(selectLocationViewController, animated: true)
+    }
+    
+    @objc
+    func reloadTable() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }

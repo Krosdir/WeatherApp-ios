@@ -9,28 +9,14 @@ import Foundation
 
 class TableViewViewModel: TableViewViewModelType {
     
-    private let cities =
-        [City(id: 235445,
-              name: "Novosibirsk",
-              temperature: -20,
-              pressure: 111,
-              humidity: 70,
-              description: "Cold",
-              coordinates: Coordinates(longitude: 1, latitude: 1)),
-         City(id: 126875,
-              name: "Moscow",
-              temperature: -5,
-              pressure: 222,
-              humidity: 85,
-              description: "Sunny",
-              coordinates: Coordinates(longitude: 2, latitude: 2)),
-         City(id: 98678,
-              name: "Orel",
-              temperature: 3,
-              pressure: 754,
-              humidity: 50,
-              description: "Warm",
-              coordinates: Coordinates(longitude: 3, latitude: 3))]
+    private var cities = [City]()
+    
+    init() {
+        CityNetworkService.getCities { (response) in
+            self.cities += response.cities
+            NotificationCenter.default.post(name: .reloadTable, object: nil)
+        }
+    }
     
     var numberOfRows: Int {
         return cities.count

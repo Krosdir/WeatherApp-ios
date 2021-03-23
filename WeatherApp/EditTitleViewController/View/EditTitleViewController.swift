@@ -7,11 +7,16 @@
 
 import UIKit
 
+protocol TableViewDelegate: class {
+    func viewModel(_ viewModel: EditTitleViewViewModelType, attemptsToEditName name: String)
+}
+
 class EditTitleViewController: UIViewController, Storyboarded {
 
     @IBOutlet private weak var nameTextField: UITextField!
     
     var viewModel: EditTitleViewViewModelType!
+    weak var delegate: TableViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()

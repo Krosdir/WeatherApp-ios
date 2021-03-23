@@ -24,4 +24,8 @@ class SelectLocationViewViewModel: SelectLocationViewViewModelType {
         return EditTitleViewViewModel(city: city)
     }
     
+    func editTitleViewModel(city: City) -> EditTitleViewViewModelType? {
+        return EditTitleViewViewModel(city: city)
+    }
+    
 }

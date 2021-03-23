@@ -41,9 +41,9 @@ private extension DetailViewController {
     func setupViews() {
         self.navigationItem.title = viewModel.name
         
-        temperatureLabel.text = viewModel.temperature
-        pressureLabel.text = viewModel.pressure
-        humidityLabel.text = viewModel.humidity
-        descriptionLabel.text = viewModel.description
+        temperatureLabel.text = "Temperature: \(viewModel.temperature)"
+        pressureLabel.text = "Pressure: \(viewModel.pressure)"
+        humidityLabel.text = "Humidity: \(viewModel.humidity)"
+        descriptionLabel.text = "Description: \(viewModel.description)"
     }
 }

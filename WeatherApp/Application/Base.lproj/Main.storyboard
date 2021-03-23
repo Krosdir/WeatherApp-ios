@@ -201,12 +201,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8X7-t8-HfS">
+                                <rect key="frame" x="0.0" y="63" width="375" height="604"/>
+                            </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Y1f-5L-zpK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Y1f-5L-zpK" firstAttribute="bottom" secondItem="8X7-t8-HfS" secondAttribute="bottom" id="ES8-ni-iwf"/>
+                            <constraint firstItem="Y1f-5L-zpK" firstAttribute="trailing" secondItem="8X7-t8-HfS" secondAttribute="trailing" id="FcB-2D-djI"/>
                             <constraint firstItem="mAB-1s-QKn" firstAttribute="top" secondItem="Y1f-5L-zpK" secondAttribute="top" constant="25" id="OC8-Mt-nXc"/>
+                            <constraint firstItem="8X7-t8-HfS" firstAttribute="top" secondItem="mAB-1s-QKn" secondAttribute="bottom" constant="8" symbolic="YES" id="cQq-R7-VJD"/>
                             <constraint firstItem="mAB-1s-QKn" firstAttribute="centerX" secondItem="t03-9q-gN7" secondAttribute="centerX" id="d72-lo-ji1"/>
+                            <constraint firstItem="8X7-t8-HfS" firstAttribute="leading" secondItem="Y1f-5L-zpK" secondAttribute="leading" id="t45-hF-Vd6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="wEY-i1-grP">
@@ -216,10 +223,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="8X7-t8-HfS" id="DGy-1L-7ol"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FXH-O0-Bsd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4846" y="230"/>
+            <point key="canvasLocation" x="4845.6000000000004" y="229.83508245877064"/>
         </scene>
         <!--Edit Title View Controller-->
         <scene sceneID="hW6-8N-bFa">
