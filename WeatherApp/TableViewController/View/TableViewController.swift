@@ -18,6 +18,11 @@ class TableViewController: UITableViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTable), name: .reloadTable, object: nil)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        reloadTable()
+    }
 
     // MARK: - Table view data source
 

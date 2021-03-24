@@ -24,8 +24,11 @@ class SelectLocationViewViewModel: SelectLocationViewViewModelType {
         return EditTitleViewViewModel(city: city)
     }
     
-    func editTitleViewModel(city: City) -> EditTitleViewViewModelType? {
-        return EditTitleViewViewModel(city: city)
+    func fetchCity(coordinates: Coordinates) {
+        CityNetworkService.getCityByCoordinates(coordinates: coordinates) { (response) in
+            guard let city = response.cities.first else { return }
+            self.city = city
+        }
     }
     
 }
