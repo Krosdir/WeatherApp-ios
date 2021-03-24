@@ -20,7 +20,7 @@ class SelectLocationViewViewModel: SelectLocationViewViewModelType {
         self.city = city
     }
     
-    func editTitleViewModel() -> EditTitleViewViewModelType? {
+    func editTitleViewModel() -> EditTitleViewViewModel? {
         return EditTitleViewViewModel(city: city)
     }
     

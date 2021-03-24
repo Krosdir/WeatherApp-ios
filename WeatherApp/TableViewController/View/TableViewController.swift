@@ -71,6 +71,13 @@ class TableViewController: UITableViewController {
     }
 }
 
+extension TableViewController: TableViewDelegate {
+    func viewModel(_ city: City, attemptsToEditName name: String) {
+        self.viewModel.placeCity(city: city, with: name)
+    }
+    
+}
+
 private extension TableViewController {
     func openSelectLocationController(with viewModel: SelectLocationViewViewModelType?) {
         let selectLocationViewController = SelectLocationViewController.instantiate()

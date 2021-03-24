@@ -8,18 +8,20 @@
 import UIKit
 
 protocol TableViewDelegate: class {
-    func viewModel(_ viewModel: EditTitleViewViewModelType, attemptsToEditName name: String)
+    func viewModel(_ city: City, attemptsToEditName name: String)
 }
 
 class EditTitleViewController: UIViewController, Storyboarded {
 
     @IBOutlet private weak var nameTextField: UITextField!
     
-    var viewModel: EditTitleViewViewModelType!
+    var viewModel: EditTitleViewViewModel!
     weak var delegate: TableViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tableViewController = self.navigationController?.viewControllers.first as! TableViewDelegate
+        delegate = tableViewController
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,12 +31,14 @@ class EditTitleViewController: UIViewController, Storyboarded {
     }
     
     @IBAction func doneButtonAction(_ sender: Any) {
-        guard let newName = nameTextField.text else { return }
+        guard let newName = nameTextField.text,
+              let city = viewModel.city else { return }
         if newName.isEmpty {
-            self.navigationController?.popToRootViewController(animated: true)
+            delegate?.viewModel(city, attemptsToEditName: viewModel.name)
         } else {
-            
+            delegate?.viewModel(city, attemptsToEditName: newName)
         }
+        self.navigationController?.popToRootViewController(animated: true)
     }
 }
 

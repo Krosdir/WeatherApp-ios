@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct City {
+struct City: Equatable {
     var id: Int
     var name: String
     var temperature: Double
@@ -69,7 +69,7 @@ struct City {
         self.coordinates = Coordinates(longitude: tempLongitude, latitude: tempLatitude)
     }
     
-    static func === (lhs: City, rhs: City) -> Bool {
-        return lhs.id == rhs.id
+    static func == (lhs: City, rhs: City) -> Bool {
+        return lhs.name == rhs.name
     }
 }

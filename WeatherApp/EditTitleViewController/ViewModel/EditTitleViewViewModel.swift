@@ -7,9 +7,9 @@
 
 import Foundation
 
-class EditTitleViewViewModel: EditTitleViewViewModelType {
+class EditTitleViewViewModel {
     
-    private var city: City?
+    var city: City?
     
     var name: String {
         guard let city = self.city else { return "City Name" }
