@@ -40,4 +40,14 @@ class TableViewViewModel: TableViewViewModelType {
             return SelectLocationViewViewModel(city: city)
         }
     }
+    
+    func placeCity(city: City, with name: String) {
+        if cities.contains(city) {
+            guard let index = cities.firstIndex(of: city) else { return }
+            cities[index].name = name
+        } else {
+            cities.append(city)
+        }
+        NotificationCenter.default.post(name: .reloadTable, object: nil)
+    }
 }

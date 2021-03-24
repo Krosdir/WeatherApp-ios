@@ -12,4 +12,5 @@ protocol TableViewViewModelType {
     func cellViewModel(for indexPath: IndexPath) -> TableViewCellViewModelType?
     func detailViewModel(for indexPath: IndexPath) -> DetailViewViewModelType?
     func selectLocationViewModel(for indexPath: IndexPath) -> SelectLocationViewViewModelType?
+    func placeCity(city: City, with name: String)
 }
