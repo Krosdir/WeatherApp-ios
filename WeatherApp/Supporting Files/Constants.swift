@@ -11,4 +11,8 @@ struct Constants {
     static let apiKey = "97d1c341edf1d51cb0e58d85d62a6d5e"
     
     static let cityNames = ["London", "Paris", "Moscow"]
+    
+    struct LocalStorageKeys {
+        static let cities = "cities"
+    }
 }

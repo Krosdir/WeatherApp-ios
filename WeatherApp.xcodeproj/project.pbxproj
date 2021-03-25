@@ -10,6 +10,7 @@
 		7D30BB9A260C552C00E7757F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D30BB99260C552C00E7757F /* MapViewController.swift */; };
 		7D30BB9D260C570900E7757F /* MapViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D30BB9C260C570900E7757F /* MapViewModelType.swift */; };
 		7D30BBA3260C57DA00E7757F /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D30BBA2260C57DA00E7757F /* MapViewModel.swift */; };
+		7D30BBA7260C60E500E7757F /* LocalStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D30BBA6260C60E500E7757F /* LocalStorageService.swift */; };
 		7D55A93E2609D0E3003E19DA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D55A93D2609D0E3003E19DA /* Constants.swift */; };
 		7DA57AA82609AE50008FE912 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA57AA72609AE50008FE912 /* NetworkService.swift */; };
 		7DA57AAB2609B911008FE912 /* GetCityResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA57AAA2609B911008FE912 /* GetCityResponse.swift */; };
@@ -45,6 +46,7 @@
 		7D30BB99260C552C00E7757F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		7D30BB9C260C570900E7757F /* MapViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModelType.swift; sourceTree = "<group>"; };
 		7D30BBA2260C57DA00E7757F /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		7D30BBA6260C60E500E7757F /* LocalStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageService.swift; sourceTree = "<group>"; };
 		7D55A93D2609D0E3003E19DA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7DA57AA72609AE50008FE912 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		7DA57AAA2609B911008FE912 /* GetCityResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCityResponse.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			children = (
 				7DA57AA72609AE50008FE912 /* NetworkService.swift */,
 				7DA57AAD2609B9B8008FE912 /* CityNetworkService.swift */,
+				7D30BBA6260C60E500E7757F /* LocalStorageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				870E30E426084FC900F82987 /* SceneDelegate.swift in Sources */,
 				7DE751FF26089AAC0099A0E1 /* SelectLocationViewModelType.swift in Sources */,
 				7DE751CD26086EC00099A0E1 /* TableViewController.swift in Sources */,
+				7D30BBA7260C60E500E7757F /* LocalStorageService.swift in Sources */,
 				7D30BB9D260C570900E7757F /* MapViewModelType.swift in Sources */,
 				7DE752192608B90F0099A0E1 /* EditTitleViewModel.swift in Sources */,
 				7DA57AAE2609B9B8008FE912 /* CityNetworkService.swift in Sources */,

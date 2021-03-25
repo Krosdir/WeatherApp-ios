@@ -73,3 +73,26 @@ struct City: Equatable {
         return lhs.name == rhs.name
     }
 }
+
+extension City: Codable {
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case temperature
+        case pressure
+        case humidity
+        case description
+        case coordinates
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decode(Int.self, forKey: .id)
+        name = try values.decode(String.self, forKey: .name)
+        temperature = try values.decode(Double.self, forKey: .temperature)
+        pressure = try values.decode(Double.self, forKey: .pressure)
+        humidity = try values.decode(Double.self, forKey: .humidity)
+        description = try values.decode(String.self, forKey: .description)
+        coordinates = try values.decode(Coordinates.self, forKey: .coordinates)
+    }
+}

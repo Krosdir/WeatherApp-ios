@@ -17,9 +17,15 @@ class TableViewModel: TableViewModelType {
     weak var delegate: TableViewModelDisplayDelegate?
     
     init() {
-        CityNetworkService.getCities { (response) in
-            self.cities += response.cities
+        if let cities = LocalStorageService.shared.loadCities() {
+            self.cities = cities
             self.delegate?.reloadTable()
+        } else {
+            CityNetworkService.getCities { (response) in
+                self.cities += response.cities
+                LocalStorageService.shared.save(cities: self.cities)
+                self.delegate?.reloadTable()
+            }
         }
     }
     
