@@ -59,6 +59,12 @@ class TableViewModel: TableViewModelType {
         } else {
             cities.append(city)
         }
+        LocalStorageService.shared.save(cities: self.cities)
         self.delegate?.reloadTable()
+    }
+    
+    func updateCities() {
+        guard let cities = LocalStorageService.shared.loadCities() else { return }
+        self.cities = cities
     }
 }

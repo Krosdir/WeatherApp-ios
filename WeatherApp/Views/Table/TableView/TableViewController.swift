@@ -18,13 +18,12 @@ class TableViewController: UITableViewController {
         viewModel.delegate = self
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         reloadTable()
     }
 
     // MARK: - Table view data source
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRows + 1
     }
@@ -52,7 +51,6 @@ class TableViewController: UITableViewController {
     }
     
     // MARK: - Table view delegate
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row < viewModel.numberOfRows {
             guard let detailViewModel = viewModel.detailViewModel(for: indexPath) else { return }
@@ -81,6 +79,7 @@ extension TableViewController: TableViewDelegate {
 // MARK: - TableViewModelDisplayDelegate
 extension TableViewController: TableViewModelDisplayDelegate {
     func reloadTable() {
+        viewModel.updateCities()
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }

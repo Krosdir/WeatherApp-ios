@@ -18,9 +18,20 @@ class SelectLocationViewController: UIViewController, Storyboarded {
     private var currentLocationStr = "Current location"
     private var delegateThreeCount = 3
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupLocationManager()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        delegateThreeCount = 3
+        if let _ = self.navigationController?.viewControllers.first as? TableViewModelDisplayDelegate {
+            delegateThreeCount = 3
+        } else {
+            delegateThreeCount = 1
+        }
+        
         determineCurrentLocation()
     }
     // MARK: - Actions
@@ -33,6 +44,7 @@ class SelectLocationViewController: UIViewController, Storyboarded {
     }
 }
 
+// MARK: - MKMapViewDelegate, CLLocationManagerDelegate
 extension SelectLocationViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -83,13 +95,15 @@ extension SelectLocationViewController: MKMapViewDelegate, CLLocationManagerDele
     }
 
     //MARK:- Intance Methods
-
-    func determineCurrentLocation() {
+    
+    func setupLocationManager() {
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
+    }
 
+    func determineCurrentLocation() {
         if CLLocationManager.locationServicesEnabled() {
             locationManager.startUpdatingLocation()
         }

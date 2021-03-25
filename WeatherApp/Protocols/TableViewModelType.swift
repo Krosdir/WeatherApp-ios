@@ -14,4 +14,5 @@ protocol TableViewModelType {
     func detailViewModel(for indexPath: IndexPath) -> DetailViewModelType?
     func selectLocationViewModel(for indexPath: IndexPath) -> SelectLocationViewModelType?
     func placeCity(city: City, with name: String)
+    func updateCities()
 }
