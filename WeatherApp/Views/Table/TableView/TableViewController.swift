@@ -9,23 +9,21 @@ import UIKit
 
 class TableViewController: UITableViewController {
     
-    var viewModel: TableViewViewModelType!
+    var viewModel: TableViewModelType!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = TableViewViewModel()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadTable), name: .reloadTable, object: nil)
+        viewModel = TableViewModel()
+        viewModel.delegate = self
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         reloadTable()
     }
 
     // MARK: - Table view data source
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRows + 1
     }
@@ -53,7 +51,6 @@ class TableViewController: UITableViewController {
     }
     
     // MARK: - Table view delegate
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row < viewModel.numberOfRows {
             guard let detailViewModel = viewModel.detailViewModel(for: indexPath) else { return }
@@ -71,6 +68,7 @@ class TableViewController: UITableViewController {
     }
 }
 
+// MARK: - TableViewDelegate
 extension TableViewController: TableViewDelegate {
     func viewModel(_ city: City, attemptsToEditName name: String) {
         self.viewModel.placeCity(city: city, with: name)
@@ -78,18 +76,22 @@ extension TableViewController: TableViewDelegate {
     
 }
 
+// MARK: - TableViewModelDisplayDelegate
+extension TableViewController: TableViewModelDisplayDelegate {
+    func reloadTable() {
+        viewModel.updateCities()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+}
+
+// MARK: - Private
 private extension TableViewController {
-    func openSelectLocationController(with viewModel: SelectLocationViewViewModelType?) {
+    func openSelectLocationController(with viewModel: SelectLocationViewModelType?) {
         let selectLocationViewController = SelectLocationViewController.instantiate()
         selectLocationViewController.viewModel = viewModel
         
         self.navigationController?.pushViewController(selectLocationViewController, animated: true)
-    }
-    
-    @objc
-    func reloadTable() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
     }
 }

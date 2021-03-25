@@ -22,7 +22,7 @@ class CityNetworkService {
         }
     }
     
-    static func getCityByCoordinates(coordinates: Coordinates, completion: @escaping(GetCityResponse) -> ()) {
+    static func getCity(by coordinates: Coordinates, completion: @escaping(GetCityResponse) -> ()) {
         let link = "https://api.openweathermap.org/data/2.5/weather?lat=\(coordinates.latitude)&lon=\(coordinates.longitude)&appid=\(Constants.apiKey)"
         guard let url = URL(string: link) else { return }
         

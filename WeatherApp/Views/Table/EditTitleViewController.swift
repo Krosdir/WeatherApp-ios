@@ -15,7 +15,7 @@ class EditTitleViewController: UIViewController, Storyboarded {
 
     @IBOutlet private weak var nameTextField: UITextField!
     
-    var viewModel: EditTitleViewViewModel!
+    var viewModel: EditTitleCityViewModelType!
     weak var delegate: TableViewDelegate?
     
     override func viewDidLoad() {

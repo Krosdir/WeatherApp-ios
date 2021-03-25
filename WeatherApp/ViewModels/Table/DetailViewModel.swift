@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DetailViewViewModel: DetailViewViewModelType {
+class DetailViewModel: DetailViewModelType {
     
     private var city: City!
     
@@ -35,7 +35,7 @@ class DetailViewViewModel: DetailViewViewModelType {
         self.city = city
     }
     
-    func selectLocationViewModel() -> SelectLocationViewViewModelType? {
-        return SelectLocationViewViewModel(city: city)
+    func selectLocationViewModel() -> SelectLocationViewModelType? {
+        return SelectLocationViewModel(city: city)
     }
 }

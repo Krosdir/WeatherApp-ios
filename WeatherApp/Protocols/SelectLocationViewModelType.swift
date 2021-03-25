@@ -7,8 +7,8 @@
 
 import Foundation
 
-protocol SelectLocationViewViewModelType {
+protocol SelectLocationViewModelType {
     var coordinates: Coordinates { get }
-    func editTitleViewModel() -> EditTitleViewViewModel?
+    func editTitleViewModel() -> EditTitleCityViewModelType?
     func fetchCity(coordinates: Coordinates)
 }
