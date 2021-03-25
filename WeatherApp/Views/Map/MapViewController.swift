@@ -45,16 +45,7 @@ class MapViewController: UIViewController {
 extension MapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let scale = viewModel.mapScale
-        let center = CLLocationCoordinate2D(latitude: viewModel.center.latitude, longitude: viewModel.center.longitude)
-        let mRegion = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: scale, longitudeDelta: scale))
-        mapView.setRegion(mRegion, animated: false)
-        
-        viewModel.cityCoordinates.forEach { (coordinates) in
-            let mkAnnotation: MKPointAnnotation = MKPointAnnotation()
-            mkAnnotation.coordinate = CLLocationCoordinate2DMake(coordinates.latitude, coordinates.longitude)
-            mapView.addAnnotation(mkAnnotation)
-        }
+        self.placeAnnotations()
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -89,7 +80,23 @@ extension MapViewController: TableViewDelegate {
 extension MapViewController: MapViewModelDisplayDelegate {
     func reloadMap() {
         viewModel.updateCities()
-        // bad map updating
-        locationManager(locationManager, didUpdateLocations: [CLLocation(latitude: 0, longitude: 0)])
+        placeAnnotations()
+    }
+}
+
+// MARK: - Private
+private extension MapViewController {
+    func placeAnnotations() {
+        mapView.removeAnnotations(mapView.annotations)
+        let scale = viewModel.mapScale
+        let center = CLLocationCoordinate2D(latitude: viewModel.center.latitude, longitude: viewModel.center.longitude)
+        let mRegion = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: scale, longitudeDelta: scale))
+        mapView.setRegion(mRegion, animated: false)
+        
+        viewModel.cityCoordinates.forEach { (coordinates) in
+            let mkAnnotation: MKPointAnnotation = MKPointAnnotation()
+            mkAnnotation.coordinate = CLLocationCoordinate2DMake(coordinates.latitude, coordinates.longitude)
+            mapView.addAnnotation(mkAnnotation)
+        }
     }
 }

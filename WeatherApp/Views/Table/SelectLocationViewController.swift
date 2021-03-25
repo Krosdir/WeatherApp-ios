@@ -16,7 +16,6 @@ class SelectLocationViewController: UIViewController, Storyboarded {
     var viewModel: SelectLocationViewModelType!
     private var locationManager: CLLocationManager!
     private var currentLocationStr = "Current location"
-    private var delegateThreeCount = 3
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,12 +25,6 @@ class SelectLocationViewController: UIViewController, Storyboarded {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if let _ = self.navigationController?.viewControllers.first as? TableViewModelDisplayDelegate {
-            delegateThreeCount = 3
-        } else {
-            delegateThreeCount = 1
-        }
-        
         determineCurrentLocation()
     }
     // MARK: - Actions
@@ -49,10 +42,9 @@ extension SelectLocationViewController: MKMapViewDelegate, CLLocationManagerDele
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         var mUserLocation: CLLocation
-        if delegateThreeCount != 0 {
+        if viewModel.coordinates != Coordinates.zero {
             mUserLocation = CLLocation(latitude: viewModel.coordinates.latitude, longitude: viewModel.coordinates.longitude)
             viewModel.fetchCity(coordinates: Coordinates(longitude: mUserLocation.coordinate.longitude, latitude: mUserLocation.coordinate.latitude))
-            delegateThreeCount -= 1
         } else {
             mUserLocation = locations[0] as CLLocation
             viewModel.fetchCity(coordinates: Coordinates(longitude: mUserLocation.coordinate.longitude, latitude: mUserLocation.coordinate.latitude))

@@ -57,7 +57,9 @@ class TableViewModel: TableViewModelType {
             guard let index = cities.firstIndex(of: city) else { return }
             cities[index].name = name
         } else {
-            cities.append(city)
+            var namedCity = city
+            namedCity.name = name
+            cities.append(namedCity)
         }
         LocalStorageService.shared.save(cities: self.cities)
         self.delegate?.reloadTable()

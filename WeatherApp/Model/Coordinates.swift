@@ -19,6 +19,11 @@ struct Coordinates {
         return lhs.longitude == rhs.longitude &&
             lhs.latitude == rhs.latitude
     }
+    
+    static func != (lhs: Coordinates, rhs: Coordinates) -> Bool {
+        return lhs.longitude != rhs.longitude ||
+            lhs.latitude != rhs.latitude
+    }
 }
 
 extension Coordinates: Codable {
