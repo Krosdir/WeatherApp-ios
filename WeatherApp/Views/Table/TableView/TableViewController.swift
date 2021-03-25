@@ -15,8 +15,7 @@ class TableViewController: UITableViewController {
         super.viewDidLoad()
         
         viewModel = TableViewModel()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadTable), name: .reloadTable, object: nil)
+        viewModel.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -71,6 +70,7 @@ class TableViewController: UITableViewController {
     }
 }
 
+// MARK: - TableViewDelegate
 extension TableViewController: TableViewDelegate {
     func viewModel(_ city: City, attemptsToEditName name: String) {
         self.viewModel.placeCity(city: city, with: name)
@@ -78,18 +78,21 @@ extension TableViewController: TableViewDelegate {
     
 }
 
+// MARK: - TableViewModelDisplayDelegate
+extension TableViewController: TableViewModelDisplayDelegate {
+    func reloadTable() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+}
+
+// MARK: - Private
 private extension TableViewController {
     func openSelectLocationController(with viewModel: SelectLocationViewModelType?) {
         let selectLocationViewController = SelectLocationViewController.instantiate()
         selectLocationViewController.viewModel = viewModel
         
         self.navigationController?.pushViewController(selectLocationViewController, animated: true)
-    }
-    
-    @objc
-    func reloadTable() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
     }
 }

@@ -5,8 +5,8 @@
 //  Created by Krosdir on 22.03.2021.
 //
 
-import MapKit
 import CoreLocation
+import MapKit
 import UIKit
 
 class SelectLocationViewController: UIViewController, Storyboarded {
@@ -17,11 +17,6 @@ class SelectLocationViewController: UIViewController, Storyboarded {
     private var locationManager: CLLocationManager!
     private var currentLocationStr = "Current location"
     private var delegateThreeCount = 3
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

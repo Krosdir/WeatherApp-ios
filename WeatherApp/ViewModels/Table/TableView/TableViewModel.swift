@@ -7,14 +7,19 @@
 
 import Foundation
 
+protocol TableViewModelDisplayDelegate: class {
+    func reloadTable()
+}
+
 class TableViewModel: TableViewModelType {
     
     private var cities = [City]()
+    weak var delegate: TableViewModelDisplayDelegate?
     
     init() {
         CityNetworkService.getCities { (response) in
             self.cities += response.cities
-            NotificationCenter.default.post(name: .reloadTable, object: nil)
+            self.delegate?.reloadTable()
         }
     }
     
@@ -48,6 +53,6 @@ class TableViewModel: TableViewModelType {
         } else {
             cities.append(city)
         }
-        NotificationCenter.default.post(name: .reloadTable, object: nil)
+        self.delegate?.reloadTable()
     }
 }

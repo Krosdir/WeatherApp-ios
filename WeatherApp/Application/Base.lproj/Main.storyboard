@@ -172,16 +172,34 @@
         <!--Map-->
         <scene sceneID="4Ir-n1-zyK">
             <objects>
-                <viewController id="xmY-JR-Ee3" sceneMemberID="viewController">
+                <viewController id="xmY-JR-Ee3" customClass="MapViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zk6-Zj-bhw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="aoG-dv-Zvo">
+                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
+                            </mapView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="H8l-UM-pb6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="aoG-dv-Zvo" firstAttribute="top" secondItem="H8l-UM-pb6" secondAttribute="top" id="4ew-Qn-SmH"/>
+                            <constraint firstItem="H8l-UM-pb6" firstAttribute="bottom" secondItem="aoG-dv-Zvo" secondAttribute="bottom" id="Hpv-hD-CQe"/>
+                            <constraint firstItem="H8l-UM-pb6" firstAttribute="trailing" secondItem="aoG-dv-Zvo" secondAttribute="trailing" id="YQn-hm-kup"/>
+                            <constraint firstItem="aoG-dv-Zvo" firstAttribute="leading" secondItem="H8l-UM-pb6" secondAttribute="leading" id="eVb-qc-kUy"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="50Y-k7-xfy">
-                        <barButtonItem key="rightBarButtonItem" image="plus.circle" catalog="system" id="wqy-vD-7iA"/>
+                        <barButtonItem key="rightBarButtonItem" image="plus.circle" catalog="system" id="wqy-vD-7iA">
+                            <connections>
+                                <action selector="addCityButtonAction:" destination="xmY-JR-Ee3" id="2rn-gQ-NDm"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="aoG-dv-Zvo" id="Rbx-yq-obZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lkU-iC-lUV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
