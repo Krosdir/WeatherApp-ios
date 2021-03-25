@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SelectLocationViewViewModel: SelectLocationViewViewModelType {
+class SelectLocationViewModel: SelectLocationViewModelType {
     
     private var city: City?
     
@@ -20,8 +20,8 @@ class SelectLocationViewViewModel: SelectLocationViewViewModelType {
         self.city = city
     }
     
-    func editTitleViewModel() -> EditTitleViewViewModel? {
-        return EditTitleViewViewModel(city: city)
+    func editTitleViewModel() -> EditTitleCityViewModelType? {
+        return EditTitleViewModel(city: city)
     }
     
     func fetchCity(coordinates: Coordinates) {

@@ -14,7 +14,7 @@ class DetailViewController: UIViewController, Storyboarded {
     @IBOutlet private weak var humidityLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     
-    var viewModel: DetailViewViewModelType!
+    var viewModel: DetailViewModelType!
     
     override func viewDidLoad() {
         super.viewDidLoad()

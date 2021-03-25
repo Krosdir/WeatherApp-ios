@@ -7,6 +7,7 @@
 
 import Foundation
 
-protocol EditTitleViewViewModelType {
+protocol EditTitleCityViewModelType {
     var name: String { get }
+    var city: City? { get }
 }

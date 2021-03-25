@@ -9,12 +9,12 @@ import UIKit
 
 class TableViewController: UITableViewController {
     
-    var viewModel: TableViewViewModelType!
+    var viewModel: TableViewModelType!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = TableViewViewModel()
+        viewModel = TableViewModel()
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTable), name: .reloadTable, object: nil)
     }
@@ -79,7 +79,7 @@ extension TableViewController: TableViewDelegate {
 }
 
 private extension TableViewController {
-    func openSelectLocationController(with viewModel: SelectLocationViewViewModelType?) {
+    func openSelectLocationController(with viewModel: SelectLocationViewModelType?) {
         let selectLocationViewController = SelectLocationViewController.instantiate()
         selectLocationViewController.viewModel = viewModel
         

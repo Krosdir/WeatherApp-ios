@@ -13,7 +13,7 @@ class SelectLocationViewController: UIViewController, Storyboarded {
     
     @IBOutlet private weak var mapView: MKMapView!
     
-    var viewModel: SelectLocationViewViewModelType!
+    var viewModel: SelectLocationViewModelType!
     private var locationManager: CLLocationManager!
     private var currentLocationStr = "Current location"
     private var delegateThreeCount = 3

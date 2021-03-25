@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol DetailViewViewModelType {
+protocol DetailViewModelType {
     var name: String { get }
     var temperature: String { get }
     var pressure: String { get }
     var humidity: String { get }
     var description: String { get }
-    func selectLocationViewModel() -> SelectLocationViewViewModelType?
+    func selectLocationViewModel() -> SelectLocationViewModelType?
 }

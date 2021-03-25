@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TableViewViewModel: TableViewViewModelType {
+class TableViewModel: TableViewModelType {
     
     private var cities = [City]()
     
@@ -27,17 +27,17 @@ class TableViewViewModel: TableViewViewModelType {
         return TableViewCellViewModel(city: city)
     }
     
-    func detailViewModel(for indexPath: IndexPath) -> DetailViewViewModelType? {
+    func detailViewModel(for indexPath: IndexPath) -> DetailViewModelType? {
         let city = cities[indexPath.row]
-        return DetailViewViewModel(city: city)
+        return DetailViewModel(city: city)
     }
     
-    func selectLocationViewModel(for indexPath: IndexPath) -> SelectLocationViewViewModelType? {
+    func selectLocationViewModel(for indexPath: IndexPath) -> SelectLocationViewModelType? {
         if indexPath.row >= numberOfRows {
-            return SelectLocationViewViewModel(city: nil)
+            return SelectLocationViewModel(city: nil)
         } else {
             let city = cities[indexPath.row]
-            return SelectLocationViewViewModel(city: city)
+            return SelectLocationViewModel(city: city)
         }
     }
     
