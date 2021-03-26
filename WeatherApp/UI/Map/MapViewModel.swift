@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MapViewModelDisplayDelegate: class {
-    func reloadMap()
+    func mapViewModelDidUpdate(_ viewModel: MapViewModelType)
 }
 
 class MapViewModel: MapViewModelType {
@@ -48,7 +48,7 @@ class MapViewModel: MapViewModelType {
             cities.append(city)
         }
         LocalStorageService.shared.save(cities: self.cities)
-        self.delegate?.reloadMap()
+        self.delegate?.mapViewModelDidUpdate(self)
     }
     
     func updateCities() {
@@ -81,6 +81,10 @@ private extension MapViewModel {
     func setMapScale(latitude: Double, longitude: Double) {
         guard let max = [latitude, longitude].max() else { return }
         
+        if max.isZero {
+            mapScale = 0.1
+            return
+        }
         mapScale = ceil(max)
     }
 }

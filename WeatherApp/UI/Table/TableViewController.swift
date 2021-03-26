@@ -66,23 +66,26 @@ class TableViewController: UITableViewController {
         }
         
     }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle != .delete { return }
+        
+        viewModel.removeCity(at: indexPath)
+    }
 }
 
 // MARK: - TableViewDelegate
 extension TableViewController: TableViewDelegate {
     func viewModel(_ city: City, attemptsToEditName name: String) {
-        self.viewModel.placeCity(city: city, with: name)
+        self.viewModel.placeCity(city, with: name)
     }
     
 }
 
 // MARK: - TableViewModelDisplayDelegate
 extension TableViewController: TableViewModelDisplayDelegate {
-    func reloadTable() {
-        viewModel.updateCities()
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+    func tableViewModelDidUpdated(_ viewModel: TableViewModelType) {
+        reloadTable()
     }
 }
 
@@ -93,5 +96,12 @@ private extension TableViewController {
         selectLocationViewController.viewModel = viewModel
         
         self.navigationController?.pushViewController(selectLocationViewController, animated: true)
+    }
+    
+    func reloadTable() {
+        viewModel.updateCities()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }
