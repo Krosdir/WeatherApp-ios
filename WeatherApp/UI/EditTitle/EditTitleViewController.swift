@@ -11,7 +11,7 @@ protocol TableViewDelegate: class {
     func viewModel(_ city: City, attemptsToEditName name: String)
 }
 
-class EditTitleViewController: UIViewController, Storyboarded {
+class EditTitleViewController: UIViewController {
 
     @IBOutlet private weak var nameTextField: UITextField!
     
@@ -47,5 +47,6 @@ private extension EditTitleViewController {
     
     func setupViews() {
         nameTextField.placeholder = viewModel.name
+        nameTextField.text = viewModel.name
     }
 }

@@ -13,7 +13,7 @@ class CityTableViewCell: UITableViewCell {
     
     var editButtonTapped: (() -> Void)?
     
-    var viewModel: TableViewCellViewModelType? {
+    var viewModel: CityTableViewCellViewModelType? {
         willSet(viewModel) {
             guard let viewModel = viewModel else { return }
             nameLabel.setTitle(viewModel.name, for: .normal)

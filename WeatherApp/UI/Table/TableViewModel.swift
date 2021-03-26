@@ -33,9 +33,9 @@ class TableViewModel: TableViewModelType {
         return cities.count
     }
     
-    func cellViewModel(for indexPath: IndexPath) -> TableViewCellViewModelType? {
+    func cellViewModel(for indexPath: IndexPath) -> CityTableViewCellViewModelType? {
         let city = cities[indexPath.row]
-        return TableViewCellViewModel(city: city)
+        return CityTableViewCellViewModel(city: city)
     }
     
     func detailViewModel(for indexPath: IndexPath) -> DetailViewModelType? {

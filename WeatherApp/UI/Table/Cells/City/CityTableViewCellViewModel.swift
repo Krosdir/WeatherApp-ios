@@ -1,5 +1,5 @@
 //
-//  TableViewCellViewModel.swift
+//  CityTableViewCellViewModel.swift
 //  WeatherApp
 //
 //  Created by Krosdir on 22.03.2021.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TableViewCellViewModel: TableViewCellViewModelType {
+class CityTableViewCellViewModel: CityTableViewCellViewModelType {
     
     private var city: City?
     

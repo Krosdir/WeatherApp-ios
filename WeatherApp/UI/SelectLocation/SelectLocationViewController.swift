@@ -9,7 +9,7 @@ import CoreLocation
 import MapKit
 import UIKit
 
-class SelectLocationViewController: UIViewController, Storyboarded {
+class SelectLocationViewController: UIViewController {
     
     @IBOutlet private weak var mapView: MKMapView!
     
