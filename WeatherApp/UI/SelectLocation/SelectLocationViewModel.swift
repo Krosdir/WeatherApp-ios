@@ -26,8 +26,7 @@ class SelectLocationViewModel: SelectLocationViewModelType {
     
     func fetchCity(coordinates: Coordinates) {
         CityNetworkService.getCity(by: coordinates) { (response) in
-            guard let city = response.cities.first else { return }
-            self.city = city
+            self.city = response.city
         }
     }
     

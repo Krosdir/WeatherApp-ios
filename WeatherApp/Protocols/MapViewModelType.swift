@@ -8,7 +8,6 @@
 import Foundation
 
 protocol MapViewModelType {
-    var cityNames: [String] { get }
     var cityCoordinates: [Coordinates] { get }
     var delegate: MapViewModelDisplayDelegate? { get set }
     var center: Coordinates { get }

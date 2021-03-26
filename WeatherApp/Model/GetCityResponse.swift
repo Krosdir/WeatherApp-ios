@@ -8,15 +8,12 @@
 import Foundation
 
 struct GetCityResponse {
-    let cities: [City]
+    let city: City
     
     init?(json: Any) {
-        guard let dictionary = json as? [String: AnyObject] else { return nil }
+        guard let dictionary = json as? [String: AnyObject],
+              let city = City(dict: dictionary) else { return nil }
         
-        var cities = [City]()
-        guard let city = City(dict: dictionary) else { return nil }
-        cities.append(city)
-        
-        self.cities = cities
+        self.city = city
     }
 }

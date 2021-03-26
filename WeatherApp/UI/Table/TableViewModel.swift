@@ -21,8 +21,11 @@ class TableViewModel: TableViewModelType {
             self.cities = cities
             self.delegate?.tableViewModelDidUpdated(self)
         } else {
-            CityNetworkService.getCities { (response) in
-                self.cities += response.cities
+            CityNetworkService.getCities { (response, error) in
+//                if let error {
+//                    
+//                }
+                self.cities = response
                 self.saveCities()
             }
         }

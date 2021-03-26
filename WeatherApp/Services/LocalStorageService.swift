@@ -19,7 +19,6 @@ class LocalStorageService {
             let encoder = JSONEncoder()
             let encodedData: Data = try encoder.encode(cities)
             defaults.setValue(encodedData, forKey: Constants.LocalStorageKeys.cities)
-            defaults.synchronize()
         } catch {
             print("ERROR: \(error.localizedDescription)")
         }

@@ -16,10 +16,6 @@ class MapViewModel: MapViewModelType {
     private var cities = [City]()
     weak var delegate: MapViewModelDisplayDelegate?
     
-    var cityNames: [String] {
-        return cities.map { $0.name }
-    }
-    
     var cityCoordinates: [Coordinates] {
         return cities.map { $0.coordinates }
     }
