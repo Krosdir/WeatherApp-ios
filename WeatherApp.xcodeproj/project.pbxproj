@@ -96,6 +96,8 @@
 			children = (
 				7DC8E69F260C4D050013A64B /* TableView */,
 				7DE751ED26087BC20099A0E1 /* DetailViewController.swift */,
+				7DE7520226089B480099A0E1 /* SelectLocationViewController.swift */,
+				7DE7520F2608B5060099A0E1 /* EditTitleViewController.swift */,
 			);
 			path = Table;
 			sourceTree = "<group>";
@@ -113,6 +115,8 @@
 			children = (
 				7DC8E69D260C4CDA0013A64B /* TableView */,
 				7DE751F326087D550099A0E1 /* DetailViewModel.swift */,
+				7DE7520526089B700099A0E1 /* SelectLocationViewModel.swift */,
+				7DE752152608B6630099A0E1 /* EditTitleViewModel.swift */,
 			);
 			path = Table;
 			sourceTree = "<group>";
@@ -140,8 +144,6 @@
 			children = (
 				7D30BB9F260C57BC00E7757F /* Table */,
 				7D30BBA0260C57C500E7757F /* Map */,
-				7DE7520526089B700099A0E1 /* SelectLocationViewModel.swift */,
-				7DE752152608B6630099A0E1 /* EditTitleViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -151,8 +153,6 @@
 			children = (
 				7D30BB96260C544500E7757F /* Table */,
 				7D30BB97260C544F00E7757F /* Map */,
-				7DE7520226089B480099A0E1 /* SelectLocationViewController.swift */,
-				7DE7520F2608B5060099A0E1 /* EditTitleViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

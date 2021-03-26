@@ -78,8 +78,9 @@ extension MapViewController: TableViewDelegate {
 
 // MARK: - MapViewModelDisplayDelegate
 extension MapViewController: MapViewModelDisplayDelegate {
-    func mapViewModelDidUpdate(_ viewModel: MapViewModelType) {
-        reloadMap()
+    func reloadMap() {
+        viewModel.updateCities()
+        placeAnnotations()
     }
 }
 
@@ -97,10 +98,5 @@ private extension MapViewController {
             mkAnnotation.coordinate = CLLocationCoordinate2DMake(coordinates.latitude, coordinates.longitude)
             mapView.addAnnotation(mkAnnotation)
         }
-    }
-    
-    func reloadMap() {
-        viewModel.updateCities()
-        placeAnnotations()
     }
 }

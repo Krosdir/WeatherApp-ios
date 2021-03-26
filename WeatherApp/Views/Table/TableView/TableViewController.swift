@@ -78,8 +78,11 @@ extension TableViewController: TableViewDelegate {
 
 // MARK: - TableViewModelDisplayDelegate
 extension TableViewController: TableViewModelDisplayDelegate {
-    func tableViewModelDidUpdate(_ viewModel: TableViewModelType) {
-        reloadTable()
+    func reloadTable() {
+        viewModel.updateCities()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }
 
@@ -90,12 +93,5 @@ private extension TableViewController {
         selectLocationViewController.viewModel = viewModel
         
         self.navigationController?.pushViewController(selectLocationViewController, animated: true)
-    }
-    
-    func reloadTable() {
-        viewModel.updateCities()
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
     }
 }
