@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MapViewModelDisplayDelegate: class {
-    func reloadMap()
+    func mapViewModelDidUpdate(_ viewModel: MapViewModelType)
 }
 
 class MapViewModel: MapViewModelType {
@@ -48,7 +48,7 @@ class MapViewModel: MapViewModelType {
             cities.append(city)
         }
         LocalStorageService.shared.save(cities: self.cities)
-        self.delegate?.reloadMap()
+        self.delegate?.mapViewModelDidUpdate(self)
     }
     
     func updateCities() {

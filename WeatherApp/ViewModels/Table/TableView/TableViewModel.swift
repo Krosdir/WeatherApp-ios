@@ -8,7 +8,7 @@
 import Foundation
 
 protocol TableViewModelDisplayDelegate: class {
-    func reloadTable()
+    func tableViewModelDidUpdate(_ viewModel: TableViewModelType)
 }
 
 class TableViewModel: TableViewModelType {
@@ -19,12 +19,12 @@ class TableViewModel: TableViewModelType {
     init() {
         if let cities = LocalStorageService.shared.loadCities() {
             self.cities = cities
-            self.delegate?.reloadTable()
+            self.delegate?.tableViewModelDidUpdate(self)
         } else {
             CityNetworkService.getCities { (response) in
                 self.cities += response.cities
                 LocalStorageService.shared.save(cities: self.cities)
-                self.delegate?.reloadTable()
+                self.delegate?.tableViewModelDidUpdate(self)
             }
         }
     }
@@ -62,7 +62,7 @@ class TableViewModel: TableViewModelType {
             cities.append(namedCity)
         }
         LocalStorageService.shared.save(cities: self.cities)
-        self.delegate?.reloadTable()
+        self.delegate?.tableViewModelDidUpdate(self)
     }
     
     func updateCities() {
