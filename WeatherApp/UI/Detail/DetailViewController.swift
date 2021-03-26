@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, Storyboarded {
+class DetailViewController: UIViewController {
 
     @IBOutlet private weak var temperatureLabel: UILabel!
     @IBOutlet private weak var pressureLabel: UILabel!

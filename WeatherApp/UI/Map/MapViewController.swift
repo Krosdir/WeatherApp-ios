@@ -81,6 +81,7 @@ extension MapViewController: MapViewModelDisplayDelegate {
     func mapViewModelDidUpdate(_ viewModel: MapViewModelType) {
         reloadMap()
     }
+
 }
 
 // MARK: - Private

@@ -8,7 +8,7 @@
 import Foundation
 
 protocol TableViewModelDisplayDelegate: class {
-    func tableViewModelDidUpdate(_ viewModel: TableViewModelType)
+    func tableViewModelDidUpdated(_ viewModel: TableViewModelType)
 }
 
 class TableViewModel: TableViewModelType {
@@ -19,12 +19,11 @@ class TableViewModel: TableViewModelType {
     init() {
         if let cities = LocalStorageService.shared.loadCities() {
             self.cities = cities
-            self.delegate?.tableViewModelDidUpdate(self)
+            self.delegate?.tableViewModelDidUpdated(self)
         } else {
             CityNetworkService.getCities { (response) in
                 self.cities += response.cities
-                LocalStorageService.shared.save(cities: self.cities)
-                self.delegate?.tableViewModelDidUpdate(self)
+                self.saveCities()
             }
         }
     }
@@ -33,9 +32,9 @@ class TableViewModel: TableViewModelType {
         return cities.count
     }
     
-    func cellViewModel(for indexPath: IndexPath) -> TableViewCellViewModelType? {
+    func cellViewModel(for indexPath: IndexPath) -> CityTableViewCellViewModelType? {
         let city = cities[indexPath.row]
-        return TableViewCellViewModel(city: city)
+        return CityTableViewCellViewModel(city: city)
     }
     
     func detailViewModel(for indexPath: IndexPath) -> DetailViewModelType? {
@@ -52,21 +51,39 @@ class TableViewModel: TableViewModelType {
         }
     }
     
-    func placeCity(city: City, with name: String) {
-        if cities.contains(city) {
-            guard let index = cities.firstIndex(of: city) else { return }
-            cities[index].name = name
-        } else {
+    func placeCity(_ city: City, with name: String) {
+        guard let index = cities.firstIndex(of: city) else {
             var namedCity = city
             namedCity.name = name
             cities.append(namedCity)
+            saveCities()
+            return
         }
-        LocalStorageService.shared.save(cities: self.cities)
-        self.delegate?.tableViewModelDidUpdate(self)
+        
+        cities[index].name = name
+        saveCities()
+    }
+    
+    func removeCity(at indexPath: IndexPath) {
+        guard indexPath.row < numberOfRows else {
+            print("ERROR: City with indexPath = \(indexPath) isn't found")
+            return
+        }
+        
+        cities.remove(at: indexPath.row)
+        saveCities()
     }
     
     func updateCities() {
         guard let cities = LocalStorageService.shared.loadCities() else { return }
         self.cities = cities
+    }
+}
+
+// MARK: - Private
+private extension TableViewModel {
+    func saveCities() {
+        LocalStorageService.shared.save(cities: self.cities)
+        self.delegate?.tableViewModelDidUpdated(self)
     }
 }

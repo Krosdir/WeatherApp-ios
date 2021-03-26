@@ -27,3 +27,6 @@ extension UITableViewCell {
         return String(describing: self)
     }
 }
+
+// MARK: - UIViewController
+extension UIViewController: Storyboarded {}

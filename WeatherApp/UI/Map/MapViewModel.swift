@@ -81,6 +81,10 @@ private extension MapViewModel {
     func setMapScale(latitude: Double, longitude: Double) {
         guard let max = [latitude, longitude].max() else { return }
         
+        if max.isZero {
+            mapScale = 0.1
+            return
+        }
         mapScale = ceil(max)
     }
 }
