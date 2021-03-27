@@ -12,15 +12,18 @@ class NetworkService {
     private init() {}
     static let shared = NetworkService()
     
-    func getData(url: URL, completion: @escaping (Any) -> ()) {
+    func getData(url: URL, completion: @escaping (Any) throws -> ()) rethrows {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data else { return }
+            guard let data = data else {
+                print("ERROR: No request data has gotten")
+                return
+            }
             
             do {
                 let json = try JSONSerialization.jsonObject(with: data, options: [])
-                completion(json)
+                try completion(json)
             } catch {
-                print(error)
+                print("ERROR: \(error.localizedDescription)")
             }
         }.resume()
     }

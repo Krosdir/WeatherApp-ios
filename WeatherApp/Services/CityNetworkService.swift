@@ -7,38 +7,48 @@
 
 import Foundation
 
-enum Err: Error {
-    case errrr
+enum CityNetworkError: Error {
+    case badURL
+    case imposibleParsing
 }
 
 class CityNetworkService {
     private init() {}
+    static let shared = CityNetworkService()
     
-    static func getCities(completion: @escaping([City], Error?) -> ()) {
+     func getCities(completion: @escaping([City]) -> ()) throws {
         let group = DispatchGroup()
         var cities = [City]()
-        Constants.cityNames.forEach { (name) in
+        try Constants.cityNames.forEach { (name) in
             let link = "https://api.openweathermap.org/data/2.5/weather?q=\(name)&appid=\(Constants.apiKey)"
-            guard let url = URL(string: link) else { return }
+            guard let url = URL(string: link) else {
+                throw CityNetworkError.badURL
+            }
             
             group.enter()
-            NetworkService.shared.getData(url: url) { (json) in
-                guard let response = GetCityResponse(json: json as Any) else { return }
+            try NetworkService.shared.getData(url: url) { (json) in
+                guard let response = GetCityResponse(json: json as Any) else {
+                    throw CityNetworkError.imposibleParsing
+                }
                     cities.append(response.city)
                     group.leave()
             }
         }
         
         group.wait()
-        completion(cities, nil)
+        completion(cities)
     }
     
-    static func getCity(by coordinates: Coordinates, completion: @escaping(GetCityResponse) -> ()) {
+    func getCity(by coordinates: Coordinates, completion: @escaping(GetCityResponse) -> ()) throws {
         let link = "https://api.openweathermap.org/data/2.5/weather?lat=\(coordinates.latitude)&lon=\(coordinates.longitude)&appid=\(Constants.apiKey)"
-        guard let url = URL(string: link) else { return }
+        guard let url = URL(string: link) else {
+            throw CityNetworkError.badURL
+        }
         
-        NetworkService.shared.getData(url: url) { (json) in
-            guard let response = GetCityResponse(json: json) else { return }
+        try NetworkService.shared.getData(url: url) { (json) in
+            guard let response = GetCityResponse(json: json) else {
+                throw CityNetworkError.imposibleParsing
+            }
             completion(response)
         }
     }

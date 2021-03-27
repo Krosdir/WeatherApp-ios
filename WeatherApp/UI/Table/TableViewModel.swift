@@ -21,12 +21,19 @@ class TableViewModel: TableViewModelType {
             self.cities = cities
             self.delegate?.tableViewModelDidUpdated(self)
         } else {
-            CityNetworkService.getCities { (response, error) in
-//                if let error {
-//                    
-//                }
-                self.cities = response
-                self.saveCities()
+            do {
+                try CityNetworkService.shared.getCities { (response) in
+                    self.cities = response
+                    self.saveCities()
+                }
+                
+            } catch CityNetworkError.badURL {
+                print("ERROR: Can't build a correct URL")
+                
+            } catch CityNetworkError.imposibleParsing {
+                print("ERROR: Can't parse City model")
+            } catch {
+                print("ERROR: \(error.localizedDescription)")
             }
         }
     }
