@@ -22,6 +22,7 @@ class MapViewController: UIViewController {
         
         viewModel = MapViewModel()
         viewModel.delegate = self
+        mapView.delegate = self
         setupLocationManager()
     }
     
@@ -50,6 +51,16 @@ extension MapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Error - locationManager: \(error.localizedDescription)")
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard let annotation = view.annotation else { return }
+        
+        let detailViewModel = viewModel.detailViewModel(for: annotation)
+        let detailViewController = DetailViewController.instantiate()
+        detailViewController.viewModel = detailViewModel
+        
+        self.navigationController?.pushViewController(detailViewController, animated: true)
     }
     
     //MARK:- Intance Methods
