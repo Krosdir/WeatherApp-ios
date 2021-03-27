@@ -6,13 +6,14 @@
 //
 
 import Foundation
+import MapKit
 
 protocol MapViewModelType {
-    var cityNames: [String] { get }
     var cityCoordinates: [Coordinates] { get }
     var delegate: MapViewModelDisplayDelegate? { get set }
     var center: Coordinates { get }
     var mapScale: Double { get }
+    func detailViewModel(for annotation: MKAnnotation) -> DetailViewModelType?
     func selectLocationViewModel() -> SelectLocationViewModelType?
     func placeCity(city: City, with name: String)
     func updateCities()

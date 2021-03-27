@@ -25,10 +25,19 @@ class SelectLocationViewModel: SelectLocationViewModelType {
     }
     
     func fetchCity(coordinates: Coordinates) {
-        CityNetworkService.getCity(by: coordinates) { (response) in
-            guard let city = response.cities.first else { return }
-            self.city = city
+        do {
+            try CityNetworkService.shared.getCity(by: coordinates) { (response) in
+                self.city = response.city
+            }
+        } catch CityNetworkError.badURL {
+            print("ERROR: Can't build a correct URL")
+            
+        } catch CityNetworkError.imposibleParsing {
+            print("ERROR: Can't parse City model")
+        } catch {
+            print("ERROR: \(error.localizedDescription)")
         }
+        
     }
     
 }

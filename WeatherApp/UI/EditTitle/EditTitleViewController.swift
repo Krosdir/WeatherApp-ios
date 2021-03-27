@@ -32,7 +32,10 @@ class EditTitleViewController: UIViewController {
     
     @IBAction func doneButtonAction(_ sender: Any) {
         guard let newName = nameTextField.text,
-              let city = viewModel.city else { return }
+              let city = viewModel.city else {
+            print("ERROR: EditTitleCityViewModelType doesn't retain a city")
+            return
+        }
         if newName.isEmpty {
             delegate?.viewModel(city, attemptsToEditName: viewModel.name)
         } else {

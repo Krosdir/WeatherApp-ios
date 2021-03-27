@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import MapKit
 
 protocol MapViewModelDisplayDelegate: class {
     func mapViewModelDidUpdate(_ viewModel: MapViewModelType)
@@ -15,10 +16,6 @@ class MapViewModel: MapViewModelType {
     
     private var cities = [City]()
     weak var delegate: MapViewModelDisplayDelegate?
-    
-    var cityNames: [String] {
-        return cities.map { $0.name }
-    }
     
     var cityCoordinates: [Coordinates] {
         return cities.map { $0.coordinates }
@@ -36,6 +33,12 @@ class MapViewModel: MapViewModelType {
         self.cities = cities
     }
     
+    func detailViewModel(for annotation: MKAnnotation) -> DetailViewModelType? {
+        let coordinates = getCoordinates(for: annotation)
+        guard let city = cities.first(where: { $0.coordinates == coordinates }) else { return nil }
+        return DetailViewModel(city: city)
+    }
+    
     func selectLocationViewModel() -> SelectLocationViewModelType? {
         return SelectLocationViewModel(city: nil)
     }
@@ -45,7 +48,9 @@ class MapViewModel: MapViewModelType {
             guard let index = cities.firstIndex(of: city) else { return }
             cities[index].name = name
         } else {
-            cities.append(city)
+            var namedCity = city
+            namedCity.name = name
+            cities.append(namedCity)
         }
         LocalStorageService.shared.save(cities: self.cities)
         self.delegate?.mapViewModelDidUpdate(self)
@@ -86,5 +91,12 @@ private extension MapViewModel {
             return
         }
         mapScale = ceil(max)
+    }
+    
+    func getCoordinates(for annotation: MKAnnotation) -> Coordinates {
+        let longtitude = annotation.coordinate.longitude
+        let latitude = annotation.coordinate.latitude
+        let coordinates = Coordinates(longitude: longtitude, latitude: latitude)
+        return coordinates
     }
 }
