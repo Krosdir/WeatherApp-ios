@@ -9,7 +9,7 @@ import Foundation
 
 protocol TableViewModelType {
     var numberOfRows: Int { get }
-    var delegate: TableViewModelDisplayDelegate? { get set }
+    var displayDelegate: TableViewModelDisplayDelegate? { get set }
     func cellViewModel(for indexPath: IndexPath) -> CityTableViewCellViewModelType?
     func detailViewModel(for indexPath: IndexPath) -> DetailViewModelType?
     func selectLocationViewModel(for indexPath: IndexPath) -> SelectLocationViewModelType?

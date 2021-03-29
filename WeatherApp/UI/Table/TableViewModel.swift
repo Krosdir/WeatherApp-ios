@@ -14,12 +14,12 @@ protocol TableViewModelDisplayDelegate: class {
 class TableViewModel: TableViewModelType {
     
     private var cities = [City]()
-    weak var delegate: TableViewModelDisplayDelegate?
+    weak var displayDelegate: TableViewModelDisplayDelegate?
     
     init() {
         if let cities = LocalStorageService.shared.loadCities() {
             self.cities = cities
-            self.delegate?.tableViewModelDidUpdated(self)
+            self.displayDelegate?.tableViewModelDidUpdated(self)
         } else {
             do {
                 try CityNetworkService.shared.getCities { (response) in
@@ -94,6 +94,6 @@ class TableViewModel: TableViewModelType {
 private extension TableViewModel {
     func saveCities() {
         LocalStorageService.shared.save(cities: self.cities)
-        self.delegate?.tableViewModelDidUpdated(self)
+        self.displayDelegate?.tableViewModelDidUpdated(self)
     }
 }

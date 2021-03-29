@@ -15,7 +15,7 @@ class TableViewController: UITableViewController {
         super.viewDidLoad()
         
         viewModel = TableViewModel()
-        viewModel.delegate = self
+        viewModel.displayDelegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {

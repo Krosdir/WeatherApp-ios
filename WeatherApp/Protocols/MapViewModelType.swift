@@ -10,7 +10,7 @@ import MapKit
 
 protocol MapViewModelType {
     var cityCoordinates: [Coordinates] { get }
-    var delegate: MapViewModelDisplayDelegate? { get set }
+    var displayDelegate: MapViewModelDisplayDelegate? { get set }
     var center: Coordinates { get }
     var mapScale: Double { get }
     func detailViewModel(for annotation: MKAnnotation) -> DetailViewModelType?

@@ -21,7 +21,7 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         
         viewModel = MapViewModel()
-        viewModel.delegate = self
+        viewModel.displayDelegate = self
         mapView.delegate = self
         setupLocationManager()
         placeAnnotations()
