@@ -67,8 +67,12 @@ class TableViewController: UITableViewController {
         
     }
     
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.row != viewModel.numberOfRows
+    }
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle != .delete || indexPath.row == viewModel.numberOfRows { return }
+        if editingStyle != .delete { return }
         
         viewModel.removeCity(at: indexPath)
     }

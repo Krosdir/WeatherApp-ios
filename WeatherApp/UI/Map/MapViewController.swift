@@ -50,7 +50,7 @@ extension MapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Error - locationManager: \(error.localizedDescription)")
+        print("ERROR: locationManager: \(error.localizedDescription)")
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {

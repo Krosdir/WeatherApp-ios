@@ -61,7 +61,7 @@ extension SelectLocationViewController: MKMapViewDelegate, CLLocationManagerDele
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Error - locationManager: \(error.localizedDescription)")
+        print("ERROR: locationManager: \(error.localizedDescription)")
     }
     
     //MARK:- Intance Methods

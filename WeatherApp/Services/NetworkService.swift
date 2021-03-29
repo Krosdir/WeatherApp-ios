@@ -1,5 +1,4 @@
-//
-//  NetworkManager.swift
+////  NetworkManager.swift
 //  WeatherApp
 //
 //  Created by Krosdir on 23.03.2021.
@@ -12,7 +11,7 @@ class NetworkService {
     private init() {}
     static let shared = NetworkService()
     
-    func getData(url: URL, completion: @escaping (Any) throws -> ()) rethrows {
+    func getData(url: URL, completion: @escaping (Any) throws -> ()) {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data else {
                 print("ERROR: No request data has gotten")
