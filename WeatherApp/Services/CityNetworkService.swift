@@ -26,18 +26,18 @@ class CityNetworkService {
             }
             
             group.enter()
-            try NetworkService.shared.getData(url: url) { (json) in
+            NetworkService.shared.getData(url: url) { (json) in
                 guard let response = GetCityResponse(json: json as Any) else {
                     throw CityNetworkError.imposibleParsing
                 }
-                    cities.append(response.city)
-                    group.leave()
+                cities.append(response.city)
+                group.leave()
             }
         }
         
         group.wait()
         completion(cities)
-    }
+     }
     
     func getCity(by coordinates: Coordinates, completion: @escaping(GetCityResponse) -> ()) throws {
         let link = "https://api.openweathermap.org/data/2.5/weather?lat=\(coordinates.latitude)&lon=\(coordinates.longitude)&appid=\(Constants.apiKey)"
@@ -45,7 +45,7 @@ class CityNetworkService {
             throw CityNetworkError.badURL
         }
         
-        try NetworkService.shared.getData(url: url) { (json) in
+        NetworkService.shared.getData(url: url) { (json) in
             guard let response = GetCityResponse(json: json) else {
                 throw CityNetworkError.imposibleParsing
             }
