@@ -9,11 +9,6 @@ import CoreLocation
 import Foundation
 import UIKit
 
-// MARK: - Notification.Name
-extension Notification.Name {
-    static let reloadTable = Notification.Name("reloadTable")
-}
-
 // MARK: - CLLocation
 extension CLLocation {
     func fetchCity(completion: @escaping (_ city: String?, _ error: Error?) -> ()) {

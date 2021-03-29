@@ -9,6 +9,7 @@ import Foundation
 
 protocol SelectLocationViewModelType {
     var coordinates: Coordinates { get }
+    var displayDelegate: SelectLocationViewModelDisplayDelegate? { get set }
     func editTitleViewModel() -> EditTitleCityViewModelType?
     func fetchCity(coordinates: Coordinates)
 }

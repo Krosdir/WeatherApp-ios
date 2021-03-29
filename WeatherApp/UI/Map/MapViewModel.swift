@@ -15,7 +15,7 @@ protocol MapViewModelDisplayDelegate: class {
 class MapViewModel: MapViewModelType {
     
     private var cities = [City]()
-    weak var delegate: MapViewModelDisplayDelegate?
+    weak var displayDelegate: MapViewModelDisplayDelegate?
     
     var cityCoordinates: [Coordinates] {
         return cities.map { $0.coordinates }
@@ -53,7 +53,7 @@ class MapViewModel: MapViewModelType {
             cities.append(namedCity)
         }
         LocalStorageService.shared.save(cities: self.cities)
-        self.delegate?.mapViewModelDidUpdate(self)
+        self.displayDelegate?.mapViewModelDidUpdate(self)
     }
     
     func updateCities() {

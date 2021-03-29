@@ -20,6 +20,7 @@ class SelectLocationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel.displayDelegate = self
         setupLocationManager()
         setupMap()
     }
@@ -31,18 +32,21 @@ class SelectLocationViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func nextButtonAction(_ sender: Any) {
-        let editTitleViewController = EditTitleViewController.instantiate()
-        editTitleViewController.viewModel = viewModel.editTitleViewModel()
-        
-        self.navigationController?.pushViewController(editTitleViewController, animated: true)
+        self.fetchCity()
     }
 }
 
-// MARK: - MKMapViewDelegate
-extension SelectLocationViewController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        self.fetchCity()
+// MARK: - SelectLocationViewModelDisplayDelegate
+extension SelectLocationViewController: SelectLocationViewModelDisplayDelegate {
+    func selectLocationViewModelDidUpdated(_ viewModel: SelectLocationViewModelType) {
+        DispatchQueue.main.async {
+            let editTitleViewController = EditTitleViewController.instantiate()
+            editTitleViewController.viewModel = viewModel.editTitleViewModel()
+            
+            self.navigationController?.pushViewController(editTitleViewController, animated: true)
+        }
     }
+    
 }
 
 // MARK: - Private
@@ -76,7 +80,6 @@ private extension SelectLocationViewController {
     func setupMap() {
         var mUserLocation: CLLocation
         mUserLocation = CLLocation(latitude: viewModel.coordinates.latitude, longitude: viewModel.coordinates.longitude)
-        viewModel.fetchCity(coordinates: Coordinates(longitude: mUserLocation.coordinate.longitude, latitude: mUserLocation.coordinate.latitude))
         
         let center = CLLocationCoordinate2D(latitude: mUserLocation.coordinate.latitude, longitude: mUserLocation.coordinate.longitude)
         let mRegion = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
@@ -87,11 +90,6 @@ private extension SelectLocationViewController {
         mkAnnotation.coordinate = CLLocationCoordinate2DMake(mUserLocation.coordinate.latitude, mUserLocation.coordinate.longitude)
         mkAnnotation.title = self.setUsersClosestLocation(mLattitude: mUserLocation.coordinate.latitude, mLongitude: mUserLocation.coordinate.longitude)
         mapView.addAnnotation(mkAnnotation)
-        
-        guard let _ = mapView.delegate else {
-            mapView.delegate = self
-            return
-        }
     }
 
     func determineLocation() {
