@@ -12,7 +12,7 @@ class SelectLocationViewModel: SelectLocationViewModelType {
     private var city: City?
     
     var coordinates: Coordinates {
-        guard let city = self.city else { return Coordinates(longitude: 0, latitude: 0) }
+        guard let city = self.city else { return Coordinates(longitude: 82.9346, latitude: 55.0415) }
         return city.coordinates
     }
     

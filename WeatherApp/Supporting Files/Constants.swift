@@ -12,6 +12,8 @@ struct Constants {
     
     static let cityNames = ["London", "Paris", "Warsaw"]
     
+    static let maxMKCoordinateSpan: Double = 131
+    
     struct LocalStorageKeys {
         static let cities = "cities"
     }

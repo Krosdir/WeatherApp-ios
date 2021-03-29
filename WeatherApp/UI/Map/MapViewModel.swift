@@ -90,6 +90,12 @@ private extension MapViewModel {
             mapScale = 0.1
             return
         }
+        
+        if max > Constants.maxMKCoordinateSpan {
+            mapScale = Constants.maxMKCoordinateSpan
+            return
+        }
+        
         mapScale = ceil(max)
     }
     
