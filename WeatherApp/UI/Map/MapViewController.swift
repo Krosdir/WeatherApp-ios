@@ -24,12 +24,13 @@ class MapViewController: UIViewController {
         viewModel.delegate = self
         mapView.delegate = self
         setupLocationManager()
+        placeAnnotations()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         reloadMap()
-        determineCurrentLocation()
+        determineLocation()
     }
     
     // MARK: - Actions
@@ -43,15 +44,8 @@ class MapViewController: UIViewController {
     }
 }
 
-extension MapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        self.placeAnnotations()
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("ERROR: locationManager: \(error.localizedDescription)")
-    }
+// MARK: - MKMapViewDelegate
+extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         guard let annotation = view.annotation else { return }
@@ -61,21 +55,6 @@ extension MapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
         detailViewController.viewModel = detailViewModel
         
         self.navigationController?.pushViewController(detailViewController, animated: true)
-    }
-    
-    //MARK:- Intance Methods
-
-    func setupLocationManager() {
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
-    }
-
-    func determineCurrentLocation() {
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.startUpdatingLocation()
-        }
     }
 }
 
@@ -97,6 +76,17 @@ extension MapViewController: MapViewModelDisplayDelegate {
 
 // MARK: - Private
 private extension MapViewController {
+    func setupLocationManager() {
+        locationManager = CLLocationManager()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    }
+
+    func determineLocation() {
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
     func placeAnnotations() {
         mapView.removeAnnotations(mapView.annotations)
         let scale = viewModel.mapScale
