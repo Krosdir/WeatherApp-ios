@@ -9,7 +9,7 @@ import Foundation
 import MapKit
 
 protocol MapViewModelDisplayDelegate: class {
-    func mapViewModelDidUpdate(_ viewModel: MapViewModelType)
+    func viewModelDidUpdate(_ viewModel: MapViewModelType)
 }
 
 class MapViewModel: MapViewModelType {
@@ -53,7 +53,7 @@ class MapViewModel: MapViewModelType {
             cities.append(namedCity)
         }
         LocalStorageService.shared.save(cities: self.cities)
-        self.displayDelegate?.mapViewModelDidUpdate(self)
+        self.displayDelegate?.viewModelDidUpdate(self)
     }
     
     func updateCities() {

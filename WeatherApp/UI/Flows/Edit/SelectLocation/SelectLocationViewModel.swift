@@ -7,13 +7,18 @@
 
 import Foundation
 
+protocol SelectLocationViewModelActionDelegate: class {
+    func viewModelAttemptsToContinueEditing(_ viewModel: SelectLocationViewModelType)
+}
+
 protocol SelectLocationViewModelDisplayDelegate: class {
-    func selectLocationViewModelDidUpdated(_ viewModel: SelectLocationViewModelType)
+    func viewModelDidUpdated(_ viewModel: SelectLocationViewModelType)
 }
 
 class SelectLocationViewModel: SelectLocationViewModelType {
     
     private var city: City?
+    weak var actionDelegate: SelectLocationViewModelActionDelegate?
     weak var displayDelegate: SelectLocationViewModelDisplayDelegate?
     
     var coordinates: Coordinates {
@@ -29,11 +34,15 @@ class SelectLocationViewModel: SelectLocationViewModelType {
         return EditTitleViewModel(city: city)
     }
     
+    func attemptsToAContinueEditing(with viewModel: SelectLocationViewModelType) {
+        viewModel.actionDelegate?.viewModelAttemptsToContinueEditing(viewModel)
+    }
+    
     func fetchCity(coordinates: Coordinates) {
         do {
             try CityNetworkService.shared.getCity(by: coordinates) { (response) in
                 self.city = response.city
-                self.displayDelegate?.selectLocationViewModelDidUpdated(self)
+                self.displayDelegate?.viewModelDidUpdated(self)
             }
         } catch CityNetworkError.badURL {
             print("ERROR: Can't build a correct URL")

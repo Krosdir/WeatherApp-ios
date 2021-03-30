@@ -7,19 +7,26 @@
 
 import Foundation
 
+protocol TableViewModelActionDelegate: class {
+    func viewModel(_ viewModel: TableViewModelType, attemptsToOpenDetailAtIndexPath indexPath: IndexPath)
+    func viewModel(_ viewModel: TableViewModelType, attemptsToEditCityAtIndexPath indexPath: IndexPath)
+    func viewModelAttemptsToAddCity(_ viewModel: TableViewModelType)
+}
+
 protocol TableViewModelDisplayDelegate: class {
-    func tableViewModelDidUpdated(_ viewModel: TableViewModelType)
+    func viewModelDidUpdated(_ viewModel: TableViewModelType)
 }
 
 class TableViewModel: TableViewModelType {
     
     private var cities = [City]()
+    weak var actionDelegate: TableViewModelActionDelegate?
     weak var displayDelegate: TableViewModelDisplayDelegate?
     
     init() {
         if let cities = LocalStorageService.shared.loadCities() {
             self.cities = cities
-            self.displayDelegate?.tableViewModelDidUpdated(self)
+            self.displayDelegate?.viewModelDidUpdated(self)
         } else {
             do {
                 try CityNetworkService.shared.getCities { (response) in
@@ -88,12 +95,25 @@ class TableViewModel: TableViewModelType {
         guard let cities = LocalStorageService.shared.loadCities() else { return }
         self.cities = cities
     }
+    
+    // MARK: - ActionDelegate
+    func attemptsToOpenDetails(with viewModel: TableViewModelType, atIndexPath indexPath: IndexPath) {
+        viewModel.actionDelegate?.viewModel(viewModel, attemptsToOpenDetailAtIndexPath: indexPath)
+    }
+    
+    func attemptsToEditCity(with viewModel: TableViewModelType, atIndexPath indexPath: IndexPath) {
+        viewModel.actionDelegate?.viewModel(viewModel, attemptsToEditCityAtIndexPath: indexPath)
+    }
+    
+    func attemptsToAddCity(with viewModel: TableViewModelType) {
+        viewModel.actionDelegate?.viewModelAttemptsToAddCity(viewModel)
+    }
 }
 
 // MARK: - Private
 private extension TableViewModel {
     func saveCities() {
         LocalStorageService.shared.save(cities: self.cities)
-        self.displayDelegate?.tableViewModelDidUpdated(self)
+        self.displayDelegate?.viewModelDidUpdated(self)
     }
 }
