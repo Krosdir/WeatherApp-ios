@@ -14,7 +14,6 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = TableViewModel()
         viewModel.displayDelegate = self
     }
     
@@ -32,13 +31,12 @@ class TableViewController: UITableViewController {
         if indexPath.row < viewModel.numberOfRows {
             let cell = tableView.dequeueReusableCell(withIdentifier: CityTableViewCell.identifier,
                                                      for: indexPath) as! CityTableViewCell
-            guard let cellViewModel = viewModel.cellViewModel(for: indexPath),
-                  let locationViewModel = viewModel.selectLocationViewModel(for: indexPath) else {
-                return UITableViewCell()
-            }
+            guard let cellViewModel = viewModel.cellViewModel(for: indexPath) else { return UITableViewCell() }
+            
             cell.viewModel = cellViewModel
             cell.editButtonTapped = { [weak self] in
-                self?.openSelectLocationController(with: locationViewModel)
+                guard let weakSelf = self else { return }
+                weakSelf.viewModel.attemptsToEditCity(with: weakSelf.viewModel, atIndexPath: indexPath)
             }
             
             return cell
@@ -53,18 +51,10 @@ class TableViewController: UITableViewController {
     // MARK: - Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row < viewModel.numberOfRows {
-            guard let detailViewModel = viewModel.detailViewModel(for: indexPath) else { return }
-            
-            let detailViewController = DetailViewController.instantiate()
-            detailViewController.viewModel = detailViewModel
-            
-            self.navigationController?.pushViewController(detailViewController, animated: true)
+            viewModel.attemptsToOpenDetails(with: viewModel, atIndexPath: indexPath)
         } else {
-            guard let selectLocationViewModel = viewModel.selectLocationViewModel(for: indexPath) else { return }
-            
-            openSelectLocationController(with: selectLocationViewModel)
+            viewModel.attemptsToAddCity(with: viewModel)
         }
-        
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -88,20 +78,13 @@ extension TableViewController: TableViewDelegate {
 
 // MARK: - TableViewModelDisplayDelegate
 extension TableViewController: TableViewModelDisplayDelegate {
-    func tableViewModelDidUpdated(_ viewModel: TableViewModelType) {
+    func viewModelDidUpdated(_ viewModel: TableViewModelType) {
         reloadTable()
     }
 }
 
 // MARK: - Private
 private extension TableViewController {
-    func openSelectLocationController(with viewModel: SelectLocationViewModelType?) {
-        let selectLocationViewController = SelectLocationViewController.instantiate()
-        selectLocationViewController.viewModel = viewModel
-        
-        self.navigationController?.pushViewController(selectLocationViewController, animated: true)
-    }
-    
     func reloadTable() {
         viewModel.updateCities()
         DispatchQueue.main.async {

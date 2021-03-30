@@ -36,12 +36,8 @@ class EditTitleViewController: UIViewController {
             print("ERROR: EditTitleCityViewModelType doesn't retain a city")
             return
         }
-        if newName.isEmpty {
-            delegate?.viewModel(city, attemptsToEditName: viewModel.name)
-        } else {
-            delegate?.viewModel(city, attemptsToEditName: newName)
-        }
-        self.navigationController?.popToRootViewController(animated: true)
+        
+        viewModel.attemptsToUpdateCity(city, withName: newName)
     }
 }
 

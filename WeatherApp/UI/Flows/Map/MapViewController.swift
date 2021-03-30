@@ -68,7 +68,7 @@ extension MapViewController: TableViewDelegate {
 
 // MARK: - MapViewModelDisplayDelegate
 extension MapViewController: MapViewModelDisplayDelegate {
-    func mapViewModelDidUpdate(_ viewModel: MapViewModelType) {
+    func viewModelDidUpdate(_ viewModel: MapViewModelType) {
         reloadMap()
     }
 

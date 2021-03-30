@@ -10,6 +10,10 @@ import Foundation
 protocol SelectLocationViewModelType {
     var coordinates: Coordinates { get }
     var displayDelegate: SelectLocationViewModelDisplayDelegate? { get set }
+    var actionDelegate: SelectLocationViewModelActionDelegate? { get set }
+    
     func editTitleViewModel() -> EditTitleCityViewModelType?
     func fetchCity(coordinates: Coordinates)
+    
+    func attemptsToAContinueEditing(with viewModel: SelectLocationViewModelType)
 }

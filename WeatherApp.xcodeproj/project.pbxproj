@@ -12,9 +12,14 @@
 		7D30BBA3260C57DA00E7757F /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D30BBA2260C57DA00E7757F /* MapViewModel.swift */; };
 		7D30BBA7260C60E500E7757F /* LocalStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D30BBA6260C60E500E7757F /* LocalStorageService.swift */; };
 		7D55A93E2609D0E3003E19DA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D55A93D2609D0E3003E19DA /* Constants.swift */; };
+		7D971FE12613176D0043193C /* EditCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D971FE02613176D0043193C /* EditCoordinator.swift */; };
 		7DA57AA82609AE50008FE912 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA57AA72609AE50008FE912 /* NetworkService.swift */; };
 		7DA57AAB2609B911008FE912 /* GetCityResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA57AAA2609B911008FE912 /* GetCityResponse.swift */; };
 		7DA57AAE2609B9B8008FE912 /* CityNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA57AAD2609B9B8008FE912 /* CityNetworkService.swift */; };
+		7DE5A3052612D2BE00FA83C6 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE5A3042612D2BE00FA83C6 /* Coordinator.swift */; };
+		7DE5A30E2612D58D00FA83C6 /* TableCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE5A30D2612D58D00FA83C6 /* TableCoordinator.swift */; };
+		7DE5A3122612F63400FA83C6 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE5A3112612F63400FA83C6 /* RootCoordinator.swift */; };
+		7DE5A3162612F68300FA83C6 /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE5A3152612F68300FA83C6 /* MapCoordinator.swift */; };
 		7DE751C826086E020099A0E1 /* Storyboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE751C726086E020099A0E1 /* Storyboarded.swift */; };
 		7DE751CD26086EC00099A0E1 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE751CC26086EC00099A0E1 /* TableViewController.swift */; };
 		7DE751D026086F210099A0E1 /* TableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE751CF26086F210099A0E1 /* TableViewModel.swift */; };
@@ -48,9 +53,14 @@
 		7D30BBA2260C57DA00E7757F /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		7D30BBA6260C60E500E7757F /* LocalStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageService.swift; sourceTree = "<group>"; };
 		7D55A93D2609D0E3003E19DA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		7D971FE02613176D0043193C /* EditCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCoordinator.swift; sourceTree = "<group>"; };
 		7DA57AA72609AE50008FE912 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		7DA57AAA2609B911008FE912 /* GetCityResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCityResponse.swift; sourceTree = "<group>"; };
 		7DA57AAD2609B9B8008FE912 /* CityNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityNetworkService.swift; sourceTree = "<group>"; };
+		7DE5A3042612D2BE00FA83C6 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		7DE5A30D2612D58D00FA83C6 /* TableCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCoordinator.swift; sourceTree = "<group>"; };
+		7DE5A3112612F63400FA83C6 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
+		7DE5A3152612F68300FA83C6 /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
 		7DE751C726086E020099A0E1 /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
 		7DE751CC26086EC00099A0E1 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		7DE751CF26086F210099A0E1 /* TableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModel.swift; sourceTree = "<group>"; };
@@ -91,25 +101,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7D30BB96260C544500E7757F /* Table */ = {
-			isa = PBXGroup;
-			children = (
-				7DE751CC26086EC00099A0E1 /* TableViewController.swift */,
-				7DE751CF26086F210099A0E1 /* TableViewModel.swift */,
-				7DC8E6A0260C4D160013A64B /* Cells */,
-			);
-			path = Table;
-			sourceTree = "<group>";
-		};
-		7D30BB97260C544F00E7757F /* Map */ = {
-			isa = PBXGroup;
-			children = (
-				7D30BB99260C552C00E7757F /* MapViewController.swift */,
-				7D30BBA2260C57DA00E7757F /* MapViewModel.swift */,
-			);
-			path = Map;
-			sourceTree = "<group>";
-		};
 		7DA57AA62609AE2A008FE912 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,16 +120,68 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		7DE751C526086DAE0099A0E1 /* Protocols */ = {
+		7DE5A3072612D3DF00FA83C6 /* ViewModelType */ = {
 			isa = PBXGroup;
 			children = (
-				7DE751C726086E020099A0E1 /* Storyboarded.swift */,
 				7DE751D7260870A00099A0E1 /* TableViewModelType.swift */,
 				7DE751E3260876E50099A0E1 /* CityTableViewCellViewModelType.swift */,
 				7DE751F026087CC70099A0E1 /* DetailViewModelType.swift */,
 				7DE751FE26089AAC0099A0E1 /* SelectLocationViewModelType.swift */,
 				7DE752122608B5270099A0E1 /* EditTitleCityViewModelType.swift */,
 				7D30BB9C260C570900E7757F /* MapViewModelType.swift */,
+			);
+			path = ViewModelType;
+			sourceTree = "<group>";
+		};
+		7DE5A3082612D42100FA83C6 /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+				7DE5A3112612F63400FA83C6 /* RootCoordinator.swift */,
+				7DE5A3092612D47100FA83C6 /* Table */,
+				7DE5A30A2612D49900FA83C6 /* Map */,
+				7DFFA828260DCF4700F17DED /* Detail */,
+				7DE5A30C2612D4B300FA83C6 /* Edit */,
+			);
+			path = Flows;
+			sourceTree = "<group>";
+		};
+		7DE5A3092612D47100FA83C6 /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				7DE5A30D2612D58D00FA83C6 /* TableCoordinator.swift */,
+				7DE751CC26086EC00099A0E1 /* TableViewController.swift */,
+				7DE751CF26086F210099A0E1 /* TableViewModel.swift */,
+				7DC8E6A0260C4D160013A64B /* Cells */,
+			);
+			path = Table;
+			sourceTree = "<group>";
+		};
+		7DE5A30A2612D49900FA83C6 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				7DE5A3152612F68300FA83C6 /* MapCoordinator.swift */,
+				7D30BB99260C552C00E7757F /* MapViewController.swift */,
+				7D30BBA2260C57DA00E7757F /* MapViewModel.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		7DE5A30C2612D4B300FA83C6 /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				7D971FE02613176D0043193C /* EditCoordinator.swift */,
+				7DFFA82C260DCF7500F17DED /* SelectLocation */,
+				7DFFA82E260DCF9200F17DED /* EditTitle */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
+		7DE751C526086DAE0099A0E1 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				7DE5A3042612D2BE00FA83C6 /* Coordinator.swift */,
+				7DE751C726086E020099A0E1 /* Storyboarded.swift */,
+				7DE5A3072612D3DF00FA83C6 /* ViewModelType */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -156,11 +199,7 @@
 		7DFFA821260DCDF800F17DED /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				7D30BB96260C544500E7757F /* Table */,
-				7D30BB97260C544F00E7757F /* Map */,
-				7DFFA828260DCF4700F17DED /* Detail */,
-				7DFFA82C260DCF7500F17DED /* SelectLocation */,
-				7DFFA82E260DCF9200F17DED /* EditTitle */,
+				7DE5A3082612D42100FA83C6 /* Flows */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -331,6 +370,7 @@
 				870E30E226084FC900F82987 /* AppDelegate.swift in Sources */,
 				7D55A93E2609D0E3003E19DA /* Constants.swift in Sources */,
 				7DE751E4260876E50099A0E1 /* CityTableViewCellViewModelType.swift in Sources */,
+				7D971FE12613176D0043193C /* EditCoordinator.swift in Sources */,
 				7DE7520326089B480099A0E1 /* SelectLocationViewController.swift in Sources */,
 				870E30E426084FC900F82987 /* SceneDelegate.swift in Sources */,
 				7DE751FF26089AAC0099A0E1 /* SelectLocationViewModelType.swift in Sources */,
@@ -346,11 +386,15 @@
 				7DE751DB260872030099A0E1 /* Extensions.swift in Sources */,
 				7DE751E8260878460099A0E1 /* CityTableViewCellViewModel.swift in Sources */,
 				7DE751D026086F210099A0E1 /* TableViewModel.swift in Sources */,
+				7DE5A3052612D2BE00FA83C6 /* Coordinator.swift in Sources */,
 				7DE751C826086E020099A0E1 /* Storyboarded.swift in Sources */,
 				7D30BB9A260C552C00E7757F /* MapViewController.swift in Sources */,
+				7DE5A3162612F68300FA83C6 /* MapCoordinator.swift in Sources */,
 				7DE751D8260870A00099A0E1 /* TableViewModelType.swift in Sources */,
 				7DE751E1260874350099A0E1 /* AddCityTableViewCell.swift in Sources */,
+				7DE5A30E2612D58D00FA83C6 /* TableCoordinator.swift in Sources */,
 				7DE751F126087CC70099A0E1 /* DetailViewModelType.swift in Sources */,
+				7DE5A3122612F63400FA83C6 /* RootCoordinator.swift in Sources */,
 				7DE751D426086F780099A0E1 /* City.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

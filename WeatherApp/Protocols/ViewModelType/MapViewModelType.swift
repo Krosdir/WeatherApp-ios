@@ -13,6 +13,7 @@ protocol MapViewModelType {
     var displayDelegate: MapViewModelDisplayDelegate? { get set }
     var center: Coordinates { get }
     var mapScale: Double { get }
+    
     func detailViewModel(for annotation: MKAnnotation) -> DetailViewModelType?
     func selectLocationViewModel() -> SelectLocationViewModelType?
     func placeCity(city: City, with name: String)

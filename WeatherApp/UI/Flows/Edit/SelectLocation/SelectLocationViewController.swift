@@ -38,12 +38,9 @@ class SelectLocationViewController: UIViewController {
 
 // MARK: - SelectLocationViewModelDisplayDelegate
 extension SelectLocationViewController: SelectLocationViewModelDisplayDelegate {
-    func selectLocationViewModelDidUpdated(_ viewModel: SelectLocationViewModelType) {
+    func viewModelDidUpdated(_ viewModel: SelectLocationViewModelType) {
         DispatchQueue.main.async {
-            let editTitleViewController = EditTitleViewController.instantiate()
-            editTitleViewController.viewModel = viewModel.editTitleViewModel()
-            
-            self.navigationController?.pushViewController(editTitleViewController, animated: true)
+            viewModel.attemptsToAContinueEditing(with: viewModel)
         }
     }
     
