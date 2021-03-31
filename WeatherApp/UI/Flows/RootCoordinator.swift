@@ -15,14 +15,14 @@ class RootCoordinator: Coordinator {
     
     var parent: Coordinator?
     
-    let window: UIWindow
+    private let window: UIWindow
     
-    let tabController: UITabBarController
+    private let tabController: UITabBarController
     
-    let tableCoordinator: TableCoordinator
-    let mapCoordinator: MapCoordinator
+    private let tableCoordinator: TableCoordinator
+    private let mapCoordinator: MapCoordinator
     
-    var coordinators: [Coordinator] {
+    private var coordinators: [Coordinator] {
         return [tableCoordinator, mapCoordinator]
     }
     
@@ -35,10 +35,6 @@ class RootCoordinator: Coordinator {
         mapCoordinator = MapCoordinator()
         
         self.window = window
-    }
-    
-    func chilgCoordinatorDidFinish(_ coordinator: Coordinator) {
-        
     }
     
     func start() {

@@ -7,9 +7,14 @@
 
 import Foundation
 
+protocol DetailViewModelActionDelegate: class {
+    func viewModelAttemptsToEditCity(_ viewModel: DetailViewModelType)
+}
+
 class DetailViewModel: DetailViewModelType {
     
     private var city: City!
+    weak var actionDelegate: DetailViewModelActionDelegate?
     
     var name: String {
         return city.name
@@ -37,5 +42,10 @@ class DetailViewModel: DetailViewModelType {
     
     func selectLocationViewModel() -> SelectLocationViewModelType? {
         return SelectLocationViewModel(city: city)
+    }
+    
+    // MARK: - ActionDelegate
+    func attemptsToEditCity(with viewModel: DetailViewModelType) {
+        viewModel.actionDelegate?.viewModelAttemptsToEditCity(viewModel)
     }
 }

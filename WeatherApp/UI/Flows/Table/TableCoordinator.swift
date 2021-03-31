@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class TableCoordinator: Coordinator {
+class TableCoordinator: NSObject, Coordinator {
     
     var rootViewController: UIViewController {
         self.rootNavigationController
@@ -16,13 +16,13 @@ class TableCoordinator: Coordinator {
     
     var parent: Coordinator?
     
-    var tableViewController: TableViewController
+    private var tableViewController: TableViewController
     
-    var editCoordinator: EditCoordinator?
+    private var editCoordinator: EditCoordinator?
     
-    var rootNavigationController: UINavigationController
+    private var rootNavigationController: UINavigationController
     
-    init() {
+    override init() {
         
         let tableViewController = TableViewController.instantiate()
         self.tableViewController = tableViewController
@@ -31,15 +31,19 @@ class TableCoordinator: Coordinator {
         let navigationController = UINavigationController(rootViewController: self.tableViewController)
         self.rootNavigationController = navigationController
         
+        super.init()
+        
+        self.rootNavigationController.delegate = self
         self.tableViewController.viewModel.actionDelegate = self
     }
     
     func chilgCoordinatorDidFinish(_ coordinator: Coordinator) {
-
+        editCoordinator = nil
     }
     
 }
 
+// MARK: - TableViewModelActionDelegate
 extension TableCoordinator: TableViewModelActionDelegate {
     func viewModel(_ viewModel: TableViewModelType, attemptsToOpenDetailAtIndexPath indexPath: IndexPath) {
         guard let detailViewModel = viewModel.detailViewModel(for: indexPath) else {
@@ -49,6 +53,7 @@ extension TableCoordinator: TableViewModelActionDelegate {
         
         let detailViewController = DetailViewController.instantiate()
         detailViewController.viewModel = detailViewModel
+        detailViewController.viewModel.actionDelegate = self
         
         rootNavigationController.pushViewController(detailViewController, animated: true)
     }
@@ -73,5 +78,32 @@ extension TableCoordinator: TableViewModelActionDelegate {
         editCoordinator = EditCoordinator()
         editCoordinator?.parent = self
         editCoordinator?.start(with: selectViewModel, in: rootNavigationController)
+    }
+}
+
+// MARK: - DetailViewModelActionDelegate
+extension TableCoordinator: DetailViewModelActionDelegate {
+    func viewModelAttemptsToEditCity(_ viewModel: DetailViewModelType) {
+        guard let selectViewModel = viewModel.selectLocationViewModel() else {
+            print("ERROR: Can't get SelectLocationViewModel")
+            return
+        }
+        
+        editCoordinator = EditCoordinator()
+        editCoordinator?.parent = self
+        editCoordinator?.start(with: selectViewModel, in: rootNavigationController)
+    }
+}
+
+// MARK: - UINavigationControllerDelegate
+extension TableCoordinator: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        guard let previousController = navigationController.transitionCoordinator?.viewController(forKey: .from),
+              let nextController = navigationController.transitionCoordinator?.viewController(forKey: .to),
+              previousController == editCoordinator?.selectLocationViewController &&
+              nextController != editCoordinator?.editTitleViewController else {
+            return
+        }
+        chilgCoordinatorDidFinish(editCoordinator!)
     }
 }

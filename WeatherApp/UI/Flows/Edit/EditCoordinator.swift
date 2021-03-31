@@ -19,16 +19,12 @@ class EditCoordinator: Coordinator {
     var selectLocationViewController: SelectLocationViewController
     var editTitleViewController: EditTitleViewController
     
-    var rootNavigationController: UINavigationController!
+    private var rootNavigationController: UINavigationController!
     
     init() {
         self.selectLocationViewController = SelectLocationViewController.instantiate()
         
         self.editTitleViewController = EditTitleViewController.instantiate()
-    }
-    
-    func chilgCoordinatorDidFinish(_ coordinator: Coordinator) {
-        
     }
     
     func start(with viewModel: SelectLocationViewModelType, in navigationController: UINavigationController) {
@@ -41,6 +37,7 @@ class EditCoordinator: Coordinator {
     
 }
 
+// MARK: - SelectLocationViewModelActionDelegate
 extension EditCoordinator: SelectLocationViewModelActionDelegate {
     func viewModelAttemptsToContinueEditing(_ viewModel: SelectLocationViewModelType) {
         guard let editViewModel = viewModel.editTitleViewModel() else {
@@ -55,6 +52,7 @@ extension EditCoordinator: SelectLocationViewModelActionDelegate {
     }
 }
 
+// MARK: - EditTitleViewModelActionDelegate
 extension EditCoordinator: EditTitleViewModelActionDelegate {
     func viewModel(_ viewModel: EditTitleCityViewModelType, attemptsUpdateCity city: City, withName name: String) {
         if name.isEmpty {
@@ -62,6 +60,7 @@ extension EditCoordinator: EditTitleViewModelActionDelegate {
         } else {
             self.editTitleViewController.delegate?.viewModel(city, attemptsToEditName: name)
         }
+        parent?.chilgCoordinatorDidFinish(self)
         rootNavigationController.popToRootViewController(animated: true)
         
     }

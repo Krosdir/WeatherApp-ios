@@ -16,3 +16,7 @@ protocol Coordinator: class, CoordinatorActionDelegate {
     var rootViewController: UIViewController { get }
     var parent: Coordinator? { get set }
 }
+
+extension Coordinator {
+    func chilgCoordinatorDidFinish(_ coordinator: Coordinator) { }
+}

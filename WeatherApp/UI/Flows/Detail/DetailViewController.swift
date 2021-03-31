@@ -27,10 +27,7 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func editButtonAction(_ sender: Any) {
-        let selectLocationViewController = SelectLocationViewController.instantiate()
-        selectLocationViewController.viewModel = viewModel.selectLocationViewModel()
-        
-        self.navigationController?.pushViewController(selectLocationViewController, animated: true)
+        viewModel.attemptsToEditCity(with: viewModel)
     }
     
 }

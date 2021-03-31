@@ -30,7 +30,6 @@ class SelectLocationViewController: UIViewController {
         determineLocation()
     }
     // MARK: - Actions
-    
     @IBAction func nextButtonAction(_ sender: Any) {
         self.fetchCity()
     }

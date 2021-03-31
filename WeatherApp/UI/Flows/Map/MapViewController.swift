@@ -20,7 +20,6 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = MapViewModel()
         viewModel.displayDelegate = self
         mapView.delegate = self
         setupLocationManager()
@@ -36,11 +35,7 @@ class MapViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func addCityButtonAction(_ sender: Any) {
-        let selectLocationViewModel = viewModel.selectLocationViewModel()
-        let selectLocationViewController = SelectLocationViewController.instantiate()
-        selectLocationViewController.viewModel = selectLocationViewModel
-
-        self.navigationController?.pushViewController(selectLocationViewController, animated: true)
+        viewModel.attemptsToAddCity(with: viewModel)
     }
 }
 
@@ -50,11 +45,7 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         guard let annotation = view.annotation else { return }
         
-        let detailViewModel = viewModel.detailViewModel(for: annotation)
-        let detailViewController = DetailViewController.instantiate()
-        detailViewController.viewModel = detailViewModel
-        
-        self.navigationController?.pushViewController(detailViewController, animated: true)
+        viewModel.attemptsToOpenDetails(with: viewModel, forAnnotation: annotation)
     }
 }
 
