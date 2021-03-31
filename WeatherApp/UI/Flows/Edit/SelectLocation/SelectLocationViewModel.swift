@@ -34,10 +34,6 @@ class SelectLocationViewModel: SelectLocationViewModelType {
         return EditTitleViewModel(city: city)
     }
     
-    func attemptsToAContinueEditing(with viewModel: SelectLocationViewModelType) {
-        viewModel.actionDelegate?.viewModelAttemptsToContinueEditing(viewModel)
-    }
-    
     func fetchCity(coordinates: Coordinates) {
         do {
             try CityNetworkService.shared.getCity(by: coordinates) { (response) in
@@ -55,4 +51,8 @@ class SelectLocationViewModel: SelectLocationViewModelType {
         
     }
     
+    // MARK: - ActionDelegate
+    func attemptsToAContinueEditing(with viewModel: SelectLocationViewModelType) {
+        viewModel.actionDelegate?.viewModelAttemptsToContinueEditing(viewModel)
+    }
 }

@@ -25,8 +25,8 @@ class EditTitleViewModel: EditTitleCityViewModelType {
         self.city = city
     }
     
+    // MARK: - ActionDelegate
     func attemptsToUpdateCity(_ city: City, withName name: String) {
         actionDelegate?.viewModel(self, attemptsUpdateCity: city, withName: name)
     }
-    
 }

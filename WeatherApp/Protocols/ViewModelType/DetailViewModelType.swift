@@ -13,6 +13,8 @@ protocol DetailViewModelType {
     var pressure: String { get }
     var humidity: String { get }
     var description: String { get }
+    var actionDelegate: DetailViewModelActionDelegate? { get set }
     
     func selectLocationViewModel() -> SelectLocationViewModelType?
+    func attemptsToEditCity(with viewModel: DetailViewModelType)
 }

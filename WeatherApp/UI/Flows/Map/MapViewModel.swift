@@ -8,6 +8,11 @@
 import Foundation
 import MapKit
 
+protocol MapViewModelActionDelegate: class {
+    func viewModelAttemptsToAddCity(_ viewModel: MapViewModelType)
+    func viewModel(_ viewModel: MapViewModelType, attemptsToOpenDetailForAnnotation annotation: MKAnnotation)
+}
+
 protocol MapViewModelDisplayDelegate: class {
     func viewModelDidUpdate(_ viewModel: MapViewModelType)
 }
@@ -15,6 +20,7 @@ protocol MapViewModelDisplayDelegate: class {
 class MapViewModel: MapViewModelType {
     
     private var cities = [City]()
+    weak var actionDelegate: MapViewModelActionDelegate?
     weak var displayDelegate: MapViewModelDisplayDelegate?
     
     var cityCoordinates: [Coordinates] {
@@ -59,6 +65,15 @@ class MapViewModel: MapViewModelType {
     func updateCities() {
         guard let cities = LocalStorageService.shared.loadCities() else { return }
         self.cities = cities
+    }
+    
+    // MARK: - ActionDelegate
+    func attemptsToAddCity(with viewModel: MapViewModelType) {
+        viewModel.actionDelegate?.viewModelAttemptsToAddCity(viewModel)
+    }
+    
+    func attemptsToOpenDetails(with viewModel: MapViewModelType, forAnnotation annotation: MKAnnotation) {
+        viewModel.actionDelegate?.viewModel(viewModel, attemptsToOpenDetailForAnnotation: annotation)
     }
     
 }
