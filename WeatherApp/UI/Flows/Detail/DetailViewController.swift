@@ -36,11 +36,13 @@ class DetailViewController: UIViewController {
 private extension DetailViewController {
     
     func setupViews() {
-        self.navigationItem.title = viewModel.name
+        let city = viewModel.getCity()
         
-        temperatureLabel.text = "Temperature: \(viewModel.temperature)"
-        pressureLabel.text = "Pressure: \(viewModel.pressure)"
-        humidityLabel.text = "Humidity: \(viewModel.humidity)"
-        descriptionLabel.text = "Description: \(viewModel.description)"
+        self.navigationItem.title = city.name
+        
+        temperatureLabel.text = "Temperature: \(city.temperature)"
+        pressureLabel.text = "Pressure: \(city.pressure)"
+        humidityLabel.text = "Humidity: \(city.humidity)"
+        descriptionLabel.text = "Description: \(city.description)"
     }
 }

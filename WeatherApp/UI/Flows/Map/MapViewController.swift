@@ -49,14 +49,6 @@ extension MapViewController: MKMapViewDelegate {
     }
 }
 
-// MARK: - TableViewDelegate
-extension MapViewController: TableViewDelegate {
-    func viewModel(_ city: City, attemptsToEditName name: String) {
-        self.viewModel.placeCity(city: city, with: name)
-    }
-    
-}
-
 // MARK: - MapViewModelDisplayDelegate
 extension MapViewController: MapViewModelDisplayDelegate {
     func viewModelDidUpdate(_ viewModel: MapViewModelType) {

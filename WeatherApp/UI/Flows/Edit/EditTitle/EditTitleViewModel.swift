@@ -8,7 +8,7 @@
 import Foundation
 
 protocol EditTitleViewModelActionDelegate: class {
-    func viewModel(_ viewModel: EditTitleCityViewModelType, attemptsUpdateCity city: City, withName name: String)
+    func viewModel(_ viewModel: EditTitleCityViewModelType, attemptsUpdateCity city: City)
 }
 
 class EditTitleViewModel: EditTitleCityViewModelType {
@@ -26,7 +26,7 @@ class EditTitleViewModel: EditTitleCityViewModelType {
     }
     
     // MARK: - ActionDelegate
-    func attemptsToUpdateCity(_ city: City, withName name: String) {
-        actionDelegate?.viewModel(self, attemptsUpdateCity: city, withName: name)
+    func attemptsToUpdateCity(_ city: City) {
+        actionDelegate?.viewModel(self, attemptsUpdateCity: city)
     }
 }

@@ -15,9 +15,9 @@ protocol MapViewModelType {
     var mapScale: Double { get }
     var actionDelegate: MapViewModelActionDelegate? { get set }
     
+    func getCity(forAnnotation annotation: MKAnnotation) -> City?
     func detailViewModel(for annotation: MKAnnotation) -> DetailViewModelType?
-    func selectLocationViewModel() -> SelectLocationViewModelType?
-    func placeCity(city: City, with name: String)
+    func placeCity(_ city: City)
     func updateCities()
     
     func attemptsToAddCity(with viewModel: MapViewModelType)

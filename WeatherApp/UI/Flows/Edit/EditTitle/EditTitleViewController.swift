@@ -7,21 +7,14 @@
 
 import UIKit
 
-protocol TableViewDelegate: class {
-    func viewModel(_ city: City, attemptsToEditName name: String)
-}
-
 class EditTitleViewController: UIViewController {
 
     @IBOutlet private weak var nameTextField: UITextField!
     
     var viewModel: EditTitleCityViewModelType!
-    weak var delegate: TableViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tableViewController = self.navigationController?.viewControllers.first as! TableViewDelegate
-        delegate = tableViewController
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,12 +25,12 @@ class EditTitleViewController: UIViewController {
     
     @IBAction func doneButtonAction(_ sender: Any) {
         guard let newName = nameTextField.text,
-              let city = viewModel.city else {
+              var city = viewModel.city else {
             print("ERROR: EditTitleCityViewModelType doesn't retain a city")
             return
         }
-        
-        viewModel.attemptsToUpdateCity(city, withName: newName)
+        city.name = newName
+        viewModel.attemptsToUpdateCity(city)
     }
 }
 

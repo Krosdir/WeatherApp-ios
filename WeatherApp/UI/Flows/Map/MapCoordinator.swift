@@ -9,7 +9,7 @@ import Foundation
 import MapKit
 import UIKit
 
-class MapCoordinator: NSObject, Coordinator {
+class MapCoordinator: Coordinator {
     var rootViewController: UIViewController {
         self.rootNavigationController
     }
@@ -21,36 +21,41 @@ class MapCoordinator: NSObject, Coordinator {
     private var editCoordinator: EditCoordinator?
     
     private var rootNavigationController: UINavigationController
-    
-    override init() {
+    private var beforeViewController: UIViewController?
+    init() {
         let mapViewController = MapViewController.instantiate()
         self.mapViewController = mapViewController
         self.mapViewController.viewModel = MapViewModel()
         
         let navigationController = UINavigationController(rootViewController: self.mapViewController)
         self.rootNavigationController = navigationController
-        
-        super.init()
-        
-        self.rootNavigationController.delegate = self
+
         self.mapViewController.viewModel.actionDelegate = self
     }
     
-    func chilgCoordinatorDidFinish(_ coordinator: Coordinator) {
+    func childCoordinatorDidFinish(_ coordinator: Coordinator) {
+        guard editCoordinator === coordinator else {
+            print("ERROR: No coordinator with that address")
+            return
+        }
         editCoordinator = nil
+    }
+    
+    func attemptsToUpdateViewModel(with city: City) {
+        mapViewController.viewModel.placeCity(city)
+        
+        guard let beforeViewController = self.beforeViewController as? DetailViewController else { return }
+        
+        beforeViewController.viewModel = DetailViewModel(city: city)
     }
 }
 
 // MARK: - MapViewModelActionDelegate
 extension MapCoordinator: MapViewModelActionDelegate {
     func viewModelAttemptsToAddCity(_ viewModel: MapViewModelType) {
-        guard let selectViewModel = viewModel.selectLocationViewModel() else {
-            print("ERROR: Can't get SelectLocationViewModel")
-            return
-        }
         editCoordinator = EditCoordinator()
         editCoordinator?.parent = self
-        editCoordinator?.start(with: selectViewModel, in: rootNavigationController)
+        editCoordinator?.start(with: nil, in: rootNavigationController)
     }
     
     func viewModel(_ viewModel: MapViewModelType, attemptsToOpenDetailForAnnotation annotation: MKAnnotation) {
@@ -70,26 +75,8 @@ extension MapCoordinator: MapViewModelActionDelegate {
 // MARK: - DetailViewModelActionDelegate
 extension MapCoordinator: DetailViewModelActionDelegate {
     func viewModelAttemptsToEditCity(_ viewModel: DetailViewModelType) {
-        guard let selectViewModel = viewModel.selectLocationViewModel() else {
-            print("ERROR: Can't get SelectLocationViewModel")
-            return
-        }
-        
         editCoordinator = EditCoordinator()
         editCoordinator?.parent = self
-        editCoordinator?.start(with: selectViewModel, in: rootNavigationController)
-    }
-}
-
-// MARK: - UINavigationControllerDelegate
-extension MapCoordinator: UINavigationControllerDelegate {
-    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-        guard let previousController = navigationController.transitionCoordinator?.viewController(forKey: .from),
-              let nextController = navigationController.transitionCoordinator?.viewController(forKey: .to),
-              previousController == editCoordinator?.selectLocationViewController &&
-              nextController != editCoordinator?.editTitleViewController else {
-            return
-        }
-        chilgCoordinatorDidFinish(editCoordinator!)
+        editCoordinator?.start(with: viewModel.getCity(), in: rootNavigationController)
     }
 }

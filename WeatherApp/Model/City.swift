@@ -8,7 +8,7 @@
 import Foundation
 
 struct City: Equatable {
-    var id: Int
+    var id: String
     var name: String
     var temperature: Double
     var pressure: Double
@@ -18,9 +18,8 @@ struct City: Equatable {
     
     typealias JSON = [String: AnyObject]
     
-    init?(dict: [String: AnyObject]) {
-        guard let id = ((dict["weather"]) as? [JSON])?.first?["id"] as? Int,
-              let name = dict["name"] as? String,
+    init?(dict: JSON) {
+        guard let name = dict["name"] as? String,
               let temperature = (dict["main"] as? JSON)?["temp"] as? Double,
               let pressure = (dict["main"] as? JSON)?["pressure"] as? Double,
               let humidity = (dict["main"] as? JSON)?["humidity"] as? Double,
@@ -28,7 +27,7 @@ struct City: Equatable {
               let longitude = (dict["coord"] as? JSON)?["lon"] as? Double,
               let latitude = (dict["coord"] as? JSON)?["lat"] as? Double else { return nil }
         
-        self.id = id
+        self.id = String(describing: dict["id"])
         self.name = name
         self.temperature = temperature
         self.pressure = pressure
@@ -38,7 +37,7 @@ struct City: Equatable {
     }
     
     static func == (lhs: City, rhs: City) -> Bool {
-        return lhs.name == rhs.name
+        return lhs.id == rhs.id
     }
 }
 
@@ -55,7 +54,7 @@ extension City: Codable {
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        id = try values.decode(Int.self, forKey: .id)
+        id = try values.decode(String.self, forKey: .id)
         name = try values.decode(String.self, forKey: .name)
         temperature = try values.decode(Double.self, forKey: .temperature)
         pressure = try values.decode(Double.self, forKey: .pressure)

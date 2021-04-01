@@ -9,7 +9,8 @@ import Foundation
 import UIKit
 
 protocol CoordinatorActionDelegate {
-    func chilgCoordinatorDidFinish(_ coordinator: Coordinator)
+    func childCoordinatorDidFinish(_ coordinator: Coordinator)
+    func attemptsToUpdateViewModel(with city: City)
 }
 
 protocol Coordinator: class, CoordinatorActionDelegate {
@@ -18,5 +19,6 @@ protocol Coordinator: class, CoordinatorActionDelegate {
 }
 
 extension Coordinator {
-    func chilgCoordinatorDidFinish(_ coordinator: Coordinator) { }
+    func childCoordinatorDidFinish(_ coordinator: Coordinator) { }
+    func attemptsToUpdateViewModel(with city: City) { }
 }

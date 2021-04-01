@@ -12,10 +12,10 @@ protocol TableViewModelType {
     var displayDelegate: TableViewModelDisplayDelegate? { get set }
     var actionDelegate: TableViewModelActionDelegate? { get set }
     
+    func getCity(at indexPath: IndexPath) -> City?
     func cellViewModel(for indexPath: IndexPath) -> CityTableViewCellViewModelType?
     func detailViewModel(for indexPath: IndexPath) -> DetailViewModelType?
-    func selectLocationViewModel(for indexPath: IndexPath) -> SelectLocationViewModelType?
-    func placeCity(_ city: City, with name: String)
+    func placeCity(_ city: City)
     func removeCity(at indexPath: IndexPath)
     func updateCities()
     
