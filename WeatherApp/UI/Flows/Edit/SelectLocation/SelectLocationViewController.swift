@@ -31,6 +31,7 @@ class SelectLocationViewController: UIViewController {
     }
     // MARK: - Actions
     @IBAction func nextButtonAction(_ sender: Any) {
+        self.view.showSpinner()
         self.fetchCity()
     }
 }
@@ -40,6 +41,7 @@ extension SelectLocationViewController: SelectLocationViewModelDisplayDelegate {
     func viewModelDidUpdated(_ viewModel: SelectLocationViewModelType) {
         DispatchQueue.main.async {
             viewModel.attemptsToAContinueEditing(with: viewModel)
+            self.view.removeSpinner()
         }
     }
     

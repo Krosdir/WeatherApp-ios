@@ -16,57 +16,25 @@ struct City: Equatable {
     var description: String
     var coordinates: Coordinates
     
-    // ugly parsing
+    typealias JSON = [String: AnyObject]
+    
     init?(dict: [String: AnyObject]) {
-        var tempId = Int()
-        var tempTemperature = Double()
-        var tempPressure = Double()
-        var tempHumidity = Double()
-        var tempDescription = String()
-        var tempLongitude = Double()
-        var tempLatitude = Double()
+        guard let id = ((dict["weather"]) as? [JSON])?.first?["id"] as? Int,
+              let name = dict["name"] as? String,
+              let temperature = (dict["main"] as? JSON)?["temp"] as? Double,
+              let pressure = (dict["main"] as? JSON)?["pressure"] as? Double,
+              let humidity = (dict["main"] as? JSON)?["humidity"] as? Double,
+              let description = ((dict["weather"]) as? [JSON])?.first?["description"] as? String,
+              let longitude = (dict["coord"] as? JSON)?["lon"] as? Double,
+              let latitude = (dict["coord"] as? JSON)?["lat"] as? Double else { return nil }
         
-        if let main = dict["main"] {
-            if let temperature = main["temp"] as? Double{
-                tempTemperature = temperature
-            }
-            if let pressure = main["pressure"] as? Double{
-                tempPressure = pressure
-            }
-            if let humidity = main["humidity"] as? Double{
-                tempHumidity = humidity
-            }
-        }
-        
-        if let coord = dict["coord"] {
-            if let lon = coord["lon"] as? Double{
-                tempLongitude = lon
-            }
-            if let lat = coord["lat"] as? Double{
-                tempLatitude = lat
-            }
-        }
-        
-        if let weather = dict["weather"] {
-            if let value = weather[0] as? NSDictionary{
-                if let description = value["description"] as? String{
-                    tempDescription = description
-                }
-                if let id = value["id"] as? Int{
-                    tempId = id
-                }
-            }
-        }
-
-        guard let name = dict["name"] as? String else { return nil }
-        
-        self.id = tempId
+        self.id = id
         self.name = name
-        self.temperature = tempTemperature
-        self.pressure = tempPressure
-        self.humidity = tempHumidity
-        self.description = tempDescription
-        self.coordinates = Coordinates(longitude: tempLongitude, latitude: tempLatitude)
+        self.temperature = temperature
+        self.pressure = pressure
+        self.humidity = humidity
+        self.description = description
+        self.coordinates = Coordinates(longitude: longitude, latitude: latitude)
     }
     
     static func == (lhs: City, rhs: City) -> Bool {

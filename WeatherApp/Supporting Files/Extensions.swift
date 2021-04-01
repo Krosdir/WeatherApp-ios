@@ -23,5 +23,30 @@ extension UITableViewCell {
     }
 }
 
+// MARK: - UIView
+extension UIView {
+    func showSpinner() {
+        let spinnerView = UIView(frame: self.bounds)
+        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        spinnerView.tag = 100
+        let ai = UIActivityIndicatorView(style: .large)
+        ai.color = .white
+        ai.startAnimating()
+        ai.center = spinnerView.center
+        
+        DispatchQueue.main.async {
+            spinnerView.addSubview(ai)
+            self.addSubview(spinnerView)
+        }
+    }
+    
+    func removeSpinner() {
+        DispatchQueue.main.async {
+            let view = self.subviews.first(where: { $0.tag == 100 })
+            view?.removeFromSuperview()
+        }
+    }
+}
+
 // MARK: - UIViewController
-extension UIViewController: Storyboarded {}
+extension UIViewController: Storyboarded { }
