@@ -49,6 +49,10 @@ class TableViewModel: TableViewModelType {
         return cities.count
     }
     
+    func getCity(at indexPath: IndexPath) -> City? {
+        return cities[indexPath.row]
+    }
+    
     func cellViewModel(for indexPath: IndexPath) -> CityTableViewCellViewModelType? {
         let city = cities[indexPath.row]
         return CityTableViewCellViewModel(city: city)
@@ -59,25 +63,14 @@ class TableViewModel: TableViewModelType {
         return DetailViewModel(city: city)
     }
     
-    func selectLocationViewModel(for indexPath: IndexPath) -> SelectLocationViewModelType? {
-        if indexPath.row >= numberOfRows {
-            return SelectLocationViewModel(city: nil)
-        } else {
-            let city = cities[indexPath.row]
-            return SelectLocationViewModel(city: city)
-        }
-    }
-    
-    func placeCity(_ city: City, with name: String) {
+    func placeCity(_ city: City) {
         guard let index = cities.firstIndex(of: city) else {
-            var namedCity = city
-            namedCity.name = name
-            cities.append(namedCity)
+            cities.append(city)
             saveCities()
             return
         }
         
-        cities[index].name = name
+        cities[index] = city
         saveCities()
     }
     

@@ -12,5 +12,5 @@ protocol EditTitleCityViewModelType {
     var city: City? { get }
     var actionDelegate: EditTitleViewModelActionDelegate? { get set }
     
-    func attemptsToUpdateCity(_ city: City, withName name: String)
+    func attemptsToUpdateCity(_ city: City)
 }

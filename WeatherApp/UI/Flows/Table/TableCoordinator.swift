@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class TableCoordinator: NSObject, Coordinator {
+class TableCoordinator: Coordinator {
     
     var rootViewController: UIViewController {
         self.rootNavigationController
@@ -21,8 +21,9 @@ class TableCoordinator: NSObject, Coordinator {
     private var editCoordinator: EditCoordinator?
     
     private var rootNavigationController: UINavigationController
+    private var beforeViewController: UIViewController?
     
-    override init() {
+    init() {
         
         let tableViewController = TableViewController.instantiate()
         self.tableViewController = tableViewController
@@ -31,14 +32,24 @@ class TableCoordinator: NSObject, Coordinator {
         let navigationController = UINavigationController(rootViewController: self.tableViewController)
         self.rootNavigationController = navigationController
         
-        super.init()
-        
-        self.rootNavigationController.delegate = self
         self.tableViewController.viewModel.actionDelegate = self
     }
     
-    func chilgCoordinatorDidFinish(_ coordinator: Coordinator) {
+    func childCoordinatorDidFinish(_ coordinator: Coordinator) {
+        guard editCoordinator === coordinator else {
+            print("ERROR: There is not a coordinator with that address")
+            return
+        }
         editCoordinator = nil
+        beforeViewController = nil
+    }
+    
+    func attemptsToUpdateViewModel(with city: City) {
+        tableViewController.viewModel.placeCity(city)
+        
+        guard let beforeViewController = self.beforeViewController as? DetailViewController else { return }
+        
+        beforeViewController.viewModel = DetailViewModel(city: city)
     }
     
 }
@@ -59,51 +70,34 @@ extension TableCoordinator: TableViewModelActionDelegate {
     }
     
     func viewModel(_ viewModel: TableViewModelType, attemptsToEditCityAtIndexPath indexPath: IndexPath) {
-        guard let selectViewModel = viewModel.selectLocationViewModel(for: indexPath) else {
-            print("ERROR: Can't get SelectLocationViewModel for indexPath - \(indexPath)")
+        guard let city = viewModel.getCity(at: indexPath) else {
+            print("ERROR: Can't get city for indexPath - \(indexPath)")
             return
         }
+        beforeViewController = rootNavigationController.topViewController
+        
         editCoordinator = EditCoordinator()
         editCoordinator?.parent = self
-        editCoordinator?.start(with: selectViewModel, in: rootNavigationController)
+        editCoordinator?.start(with: city, in: rootNavigationController)
         
     }
     
     func viewModelAttemptsToAddCity(_ viewModel: TableViewModelType) {
-        let indexPath = IndexPath(row: viewModel.numberOfRows, section: 0)
-        guard let selectViewModel = viewModel.selectLocationViewModel(for: indexPath) else {
-            print("ERROR: Can't get SelectLocationViewModel for indexPath - \(indexPath)")
-            return
-        }
+        beforeViewController = rootNavigationController.topViewController
+        
         editCoordinator = EditCoordinator()
         editCoordinator?.parent = self
-        editCoordinator?.start(with: selectViewModel, in: rootNavigationController)
+        editCoordinator?.start(with: nil, in: rootNavigationController)
     }
 }
 
 // MARK: - DetailViewModelActionDelegate
 extension TableCoordinator: DetailViewModelActionDelegate {
     func viewModelAttemptsToEditCity(_ viewModel: DetailViewModelType) {
-        guard let selectViewModel = viewModel.selectLocationViewModel() else {
-            print("ERROR: Can't get SelectLocationViewModel")
-            return
-        }
+        beforeViewController = rootNavigationController.topViewController
         
         editCoordinator = EditCoordinator()
         editCoordinator?.parent = self
-        editCoordinator?.start(with: selectViewModel, in: rootNavigationController)
-    }
-}
-
-// MARK: - UINavigationControllerDelegate
-extension TableCoordinator: UINavigationControllerDelegate {
-    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-        guard let previousController = navigationController.transitionCoordinator?.viewController(forKey: .from),
-              let nextController = navigationController.transitionCoordinator?.viewController(forKey: .to),
-              previousController == editCoordinator?.selectLocationViewController &&
-              nextController != editCoordinator?.editTitleViewController else {
-            return
-        }
-        chilgCoordinatorDidFinish(editCoordinator!)
+        editCoordinator?.start(with: viewModel.getCity(), in: rootNavigationController)
     }
 }

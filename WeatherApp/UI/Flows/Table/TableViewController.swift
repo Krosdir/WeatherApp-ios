@@ -68,14 +68,6 @@ class TableViewController: UITableViewController {
     }
 }
 
-// MARK: - TableViewDelegate
-extension TableViewController: TableViewDelegate {
-    func viewModel(_ city: City, attemptsToEditName name: String) {
-        self.viewModel.placeCity(city, with: name)
-    }
-    
-}
-
 // MARK: - TableViewModelDisplayDelegate
 extension TableViewController: TableViewModelDisplayDelegate {
     func viewModelDidUpdated(_ viewModel: TableViewModelType) {

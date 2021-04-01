@@ -8,13 +8,8 @@
 import Foundation
 
 protocol DetailViewModelType {
-    var name: String { get }
-    var temperature: String { get }
-    var pressure: String { get }
-    var humidity: String { get }
-    var description: String { get }
     var actionDelegate: DetailViewModelActionDelegate? { get set }
     
-    func selectLocationViewModel() -> SelectLocationViewModelType?
+    func getCity() -> City
     func attemptsToEditCity(with viewModel: DetailViewModelType)
 }

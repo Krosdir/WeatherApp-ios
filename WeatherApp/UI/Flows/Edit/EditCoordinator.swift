@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class EditCoordinator: Coordinator {
+class EditCoordinator: NSObject, Coordinator {
     
     var rootViewController: UIViewController {
         self.rootNavigationController
@@ -21,16 +21,19 @@ class EditCoordinator: Coordinator {
     
     private var rootNavigationController: UINavigationController!
     
-    init() {
+    override init() {
         self.selectLocationViewController = SelectLocationViewController.instantiate()
         
         self.editTitleViewController = EditTitleViewController.instantiate()
+        
+        super.init()
     }
     
-    func start(with viewModel: SelectLocationViewModelType, in navigationController: UINavigationController) {
-        selectLocationViewController.viewModel = viewModel
+    func start(with city: City?, in navigationController: UINavigationController) {
+        selectLocationViewController.viewModel = SelectLocationViewModel(city: city)
         selectLocationViewController.viewModel.actionDelegate = self
         rootNavigationController = navigationController
+        rootNavigationController.delegate = self
         
         rootNavigationController.pushViewController(selectLocationViewController, animated: true)
     }
@@ -54,14 +57,25 @@ extension EditCoordinator: SelectLocationViewModelActionDelegate {
 
 // MARK: - EditTitleViewModelActionDelegate
 extension EditCoordinator: EditTitleViewModelActionDelegate {
-    func viewModel(_ viewModel: EditTitleCityViewModelType, attemptsUpdateCity city: City, withName name: String) {
-        if name.isEmpty {
-            self.editTitleViewController.delegate?.viewModel(city, attemptsToEditName: viewModel.name)
-        } else {
-            self.editTitleViewController.delegate?.viewModel(city, attemptsToEditName: name)
-        }
-        parent?.chilgCoordinatorDidFinish(self)
-        rootNavigationController.popToRootViewController(animated: true)
+    func viewModel(_ viewModel: EditTitleCityViewModelType, attemptsUpdateCity city: City) {
+        parent?.attemptsToUpdateViewModel(with: city)
+//        self.editTitleViewController.delegate?.viewModel(city, attemptsToEditName: name)
+        parent?.childCoordinatorDidFinish(self)
+        rootNavigationController.popToViewController(selectLocationViewController, animated: false)
+        rootNavigationController.popViewController(animated: true)
         
+    }
+}
+
+// MARK: - UINavigationControllerDelegate
+extension EditCoordinator: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        guard let previousController = navigationController.transitionCoordinator?.viewController(forKey: .from),
+              let nextController = navigationController.transitionCoordinator?.viewController(forKey: .to),
+              previousController == selectLocationViewController &&
+              nextController != editTitleViewController else {
+            return
+        }
+        parent?.childCoordinatorDidFinish(self)
     }
 }

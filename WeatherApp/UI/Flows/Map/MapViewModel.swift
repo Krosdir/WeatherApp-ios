@@ -39,24 +39,24 @@ class MapViewModel: MapViewModelType {
         self.cities = cities
     }
     
+    func getCity(forAnnotation annotation: MKAnnotation) -> City? {
+        let coordinates = getCoordinates(for: annotation)
+        guard let city = cities.first(where: { $0.coordinates == coordinates }) else { return nil }
+        return city
+    }
+    
     func detailViewModel(for annotation: MKAnnotation) -> DetailViewModelType? {
         let coordinates = getCoordinates(for: annotation)
         guard let city = cities.first(where: { $0.coordinates == coordinates }) else { return nil }
         return DetailViewModel(city: city)
     }
     
-    func selectLocationViewModel() -> SelectLocationViewModelType? {
-        return SelectLocationViewModel(city: nil)
-    }
-    
-    func placeCity(city: City, with name: String) {
+    func placeCity(_ city: City) {
         if cities.contains(city) {
             guard let index = cities.firstIndex(of: city) else { return }
-            cities[index].name = name
+            cities[index] = city
         } else {
-            var namedCity = city
-            namedCity.name = name
-            cities.append(namedCity)
+            cities.append(city)
         }
         LocalStorageService.shared.save(cities: self.cities)
         self.displayDelegate?.viewModelDidUpdate(self)
