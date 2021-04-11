@@ -35,8 +35,9 @@ class CityNetworkService {
             }
         }
         
-        group.wait()
-        completion(cities)
+        group.notify(queue: .global(), execute: {
+            completion(cities)
+        })
      }
     
     func getCity(by coordinates: Coordinates, completion: @escaping(GetCityResponse) -> ()) throws {

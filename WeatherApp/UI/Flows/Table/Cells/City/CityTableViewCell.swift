@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CityTableViewCell: UITableViewCell {
+class CityTableViewCell: UITableViewCell, Reusable {
 
     @IBOutlet private weak var nameLabel: UIButton!
     

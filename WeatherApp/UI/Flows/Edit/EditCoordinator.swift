@@ -59,7 +59,7 @@ extension EditCoordinator: SelectLocationViewModelActionDelegate {
 extension EditCoordinator: EditTitleViewModelActionDelegate {
     func viewModel(_ viewModel: EditTitleCityViewModelType, attemptsUpdateCity city: City) {
         parent?.attemptsToUpdateViewModel(with: city)
-//        self.editTitleViewController.delegate?.viewModel(city, attemptsToEditName: name)
+
         parent?.childCoordinatorDidFinish(self)
         rootNavigationController.popToViewController(selectLocationViewController, animated: false)
         rootNavigationController.popViewController(animated: true)
