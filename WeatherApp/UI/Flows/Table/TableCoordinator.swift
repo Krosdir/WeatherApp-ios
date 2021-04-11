@@ -28,6 +28,7 @@ class TableCoordinator: Coordinator {
         let tableViewController = TableViewController.instantiate()
         self.tableViewController = tableViewController
         self.tableViewController.viewModel = TableViewModel()
+        self.tableViewController.viewModel.displayDelegate = tableViewController
         
         let navigationController = UINavigationController(rootViewController: self.tableViewController)
         self.rootNavigationController = navigationController

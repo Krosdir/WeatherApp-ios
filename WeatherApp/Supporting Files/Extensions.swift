@@ -25,26 +25,43 @@ extension UITableViewCell {
 
 // MARK: - UIView
 extension UIView {
-    func showSpinner() {
-        let spinnerView = UIView(frame: self.bounds)
-        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
-        spinnerView.tag = 100
-        let ai = UIActivityIndicatorView(style: .large)
-        ai.color = .white
-        ai.startAnimating()
-        ai.center = spinnerView.center
-        
-        DispatchQueue.main.async {
-            spinnerView.addSubview(ai)
-            self.addSubview(spinnerView)
-        }
+    func transition(animations: @escaping () -> Void) {
+        UIView.transition(with: self,
+                          duration: 0.25,
+                          options: .transitionCrossDissolve,
+                          animations: animations,
+                          completion: nil)
     }
     
-    func removeSpinner() {
-        DispatchQueue.main.async {
-            let view = self.subviews.first(where: { $0.tag == 100 })
-            view?.removeFromSuperview()
+    func hideView<T: UIView>(_ type: T.Type) {
+        guard let view = subviews.first(where: { $0 is T }) else { return }
+        transition { view.removeFromSuperview() }
+    }
+    
+    func showView<T: UIView>(configure: ((T) -> Void)? = nil) -> T {
+        let view = T(frame: bounds)
+        view.translatesAutoresizingMaskIntoConstraints = true
+        view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        
+        configure?(view)
+        
+        transition { self.addSubview(view) }
+        
+        return view
+    }
+    
+    @discardableResult
+    func showActivity() -> ActivityView {
+        guard let loadingView = subviews.compactMap({ $0 as? ActivityView }).first else {
+            return showView()
         }
+        
+        transition { self.bringSubviewToFront(loadingView) }
+        return loadingView
+    }
+    
+    func hideActivity() {
+        hideView(ActivityView.self)
     }
 }
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D1A5CBD2621CAB9000C9668 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1A5CBC2621CAB9000C9668 /* ActivityView.swift */; };
+		7D2D155D26231560006F55E7 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2D155C26231560006F55E7 /* Reusable.swift */; };
 		7D30BB9A260C552C00E7757F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D30BB99260C552C00E7757F /* MapViewController.swift */; };
 		7D30BB9D260C570900E7757F /* MapViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D30BB9C260C570900E7757F /* MapViewModelType.swift */; };
 		7D30BBA3260C57DA00E7757F /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D30BBA2260C57DA00E7757F /* MapViewModel.swift */; };
@@ -48,6 +50,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7D1A5CBC2621CAB9000C9668 /* ActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		7D2D155C26231560006F55E7 /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		7D30BB99260C552C00E7757F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		7D30BB9C260C570900E7757F /* MapViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModelType.swift; sourceTree = "<group>"; };
 		7D30BBA2260C57DA00E7757F /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
@@ -101,6 +105,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D1A5CBF2621CAD6000C9668 /* Reusables */ = {
+			isa = PBXGroup;
+			children = (
+				7D1A5CBC2621CAB9000C9668 /* ActivityView.swift */,
+			);
+			path = Reusables;
+			sourceTree = "<group>";
+		};
 		7DA57AA62609AE2A008FE912 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				7DE5A3042612D2BE00FA83C6 /* Coordinator.swift */,
+				7D2D155C26231560006F55E7 /* Reusable.swift */,
 				7DE751C726086E020099A0E1 /* Storyboarded.swift */,
 				7DE5A3072612D3DF00FA83C6 /* ViewModelType */,
 			);
@@ -199,6 +212,7 @@
 		7DFFA821260DCDF800F17DED /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				7D1A5CBF2621CAD6000C9668 /* Reusables */,
 				7DE5A3082612D42100FA83C6 /* Flows */,
 			);
 			path = UI;
@@ -245,6 +259,7 @@
 			children = (
 				870E30E026084FC900F82987 /* WeatherApp */,
 				870E30DF26084FC900F82987 /* Products */,
+				89B56A32D6DFC9C67CA87D18 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -289,6 +304,13 @@
 				870E30EC26084FE700F82987 /* LaunchScreen.storyboard */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		89B56A32D6DFC9C67CA87D18 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,6 +388,7 @@
 				7DE751EE26087BC20099A0E1 /* DetailViewController.swift in Sources */,
 				7DE751F426087D550099A0E1 /* DetailViewModel.swift in Sources */,
 				7DE751DE260872640099A0E1 /* CityTableViewCell.swift in Sources */,
+				7D1A5CBD2621CAB9000C9668 /* ActivityView.swift in Sources */,
 				7DE752102608B5060099A0E1 /* EditTitleViewController.swift in Sources */,
 				870E30E226084FC900F82987 /* AppDelegate.swift in Sources */,
 				7D55A93E2609D0E3003E19DA /* Constants.swift in Sources */,
@@ -375,6 +398,7 @@
 				870E30E426084FC900F82987 /* SceneDelegate.swift in Sources */,
 				7DE751FF26089AAC0099A0E1 /* SelectLocationViewModelType.swift in Sources */,
 				7DE751CD26086EC00099A0E1 /* TableViewController.swift in Sources */,
+				7D2D155D26231560006F55E7 /* Reusable.swift in Sources */,
 				7D30BBA7260C60E500E7757F /* LocalStorageService.swift in Sources */,
 				7D30BB9D260C570900E7757F /* MapViewModelType.swift in Sources */,
 				7DE752192608B90F0099A0E1 /* EditTitleViewModel.swift in Sources */,

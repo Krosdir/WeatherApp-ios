@@ -26,7 +26,6 @@ class TableViewModel: TableViewModelType {
     init() {
         if let cities = LocalStorageService.shared.loadCities() {
             self.cities = cities
-            self.displayDelegate?.viewModelDidUpdated(self)
         } else {
             do {
                 try CityNetworkService.shared.getCities { (response) in

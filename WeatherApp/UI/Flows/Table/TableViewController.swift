@@ -13,12 +13,11 @@ class TableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        viewModel.displayDelegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        if viewModel.numberOfRows == 0 { view.showActivity() }
         reloadTable()
     }
 
@@ -29,8 +28,7 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row < viewModel.numberOfRows {
-            let cell = tableView.dequeueReusableCell(withIdentifier: CityTableViewCell.identifier,
-                                                     for: indexPath) as! CityTableViewCell
+            let cell = tableView.dequeueCell(for: indexPath, with: CityTableViewCell.self)
             guard let cellViewModel = viewModel.cellViewModel(for: indexPath) else { return UITableViewCell() }
             
             cell.viewModel = cellViewModel
@@ -41,8 +39,7 @@ class TableViewController: UITableViewController {
             
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: AddCityTableViewCell.identifier,
-                                                     for: indexPath) as! AddCityTableViewCell
+            let cell = tableView.dequeueCell(for: indexPath, with: AddCityTableViewCell.self)
             
             return cell
         }
@@ -72,6 +69,9 @@ class TableViewController: UITableViewController {
 extension TableViewController: TableViewModelDisplayDelegate {
     func viewModelDidUpdated(_ viewModel: TableViewModelType) {
         reloadTable()
+        DispatchQueue.main.async {
+            self.view.hideActivity()
+        }
     }
 }
 
